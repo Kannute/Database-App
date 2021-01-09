@@ -1,7 +1,7 @@
 # Database-App
 #### PL
 ## Aplikacja bazodanowa operująca na bazie danych więzienia
-------- TODO ZDJECIE DIAGRAMU + ZALOZENIA -------
+![Diagram erd](https://github.com/Kannute/Database-App/tree/main/Diagram/diagram.png)
 
 ### UŻYTE JĘZYKI
 * PostgreSQL
@@ -11,7 +11,7 @@
 
 #### ENG
 ## App operating on prison's database.
------ TODO -----
+
 ### Languages used
 * PostgreSQL
 
