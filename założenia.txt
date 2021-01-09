@@ -1,0 +1,75 @@
+
+					Baza danych więzienia		
+
+1. Procedury postępowania wobec więźnia
+
+	-przyjęcie więźnia 
+	-depozyt własności
+	-przypisanie więźnia do odpowiednego segmentu
+	-przypisanie do celi
+	-utrzymanie więźnia przy życiu
+
+	1.1 Możliwe aktywności
+		-praca w kuchni
+		-sprzątanie
+		-aktywnosci fizyczne (spacer, boisko, siłownia)
+		
+
+	1.2 Zwolnienie więźnia
+		-wydanie zatrzymanych własności
+		-wydanie oświadczenia o przebytym wyroku
+
+	1.3 Śmierć więźnia
+		-Wydanie aktu zgonu
+		-Wydanie zatrzymanych własności rodzinie
+
+		
+
+2.Segmenty i rodzaje cel
+
+	2.1 Segment męski
+		-pokoje dla personelu
+		-cele zwykłe (2 osobowe)
+		-izolatki (1 osoba)
+		
+
+	2.2 Segment żeński
+		-pokoje dla personelu
+		-cele zwykłe (2 osobowe)
+		-izolatki (1 osoba)
+	
+	2.3 Segment z zaostrzonym rygorem
+		- pokoje dla personelu
+		- cele zwykłe (1 osoba)
+	
+		
+
+3. Personel więzienny
+	
+	- Naczelnik więzienia
+	- Naczelnik odziału
+	- Strażnicy
+	- Lekarze
+	- Pielęgniarki/rze
+	- Personel sprzątający
+	- Szef kuchni
+
+	
+4. Raporty
+	-Wykaz wolnych cel/miejsc w celach
+	-Wykaz segmentów z odpowiadającym im personelem
+	-Wykaz więźniów z pozostałym czasem odbywania wyroku
+
+5. Zasoby 
+	- sprzęt strażniczy (ubrania ochronne, broń)
+	- kajdanki, kaftany
+	- zdeponowana własność więźnia
+
+6. Możliwości manipulujące danymi w bazie
+
+	- Skrócenie/zwiększenie wyroku
+	- Przeniesienie więźnia do innej celi/segmentu
+	- Przypisanie więźniowi aktywności/pracy
+	- Wypis więźnia
+	- Zmiana wymiaru kary
+	- Przeniesienie pracownika do innego segmentu
