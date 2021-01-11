@@ -1,4 +1,5 @@
 /********************** TWORZENIE BAZY DANYCH WIEZIENIA ************************/
+
 create schema wiezienie;
 
 /******** TWORZENIE TABEL I ODPOWIADAJACYM IM SEKWENCJI *******/
@@ -152,3 +153,97 @@ CREATE TABLE zasoby(
 );
 
 ALTER SEQUENCE wiezienie.zasoby_id_zasobu_seq OWNED BY wizienie.zasoby.zasoby_id;
+
+
+/***** NADAWANIE KLUCZY OBCYCH *****/
+
+/** TABELA WIEZIEN_INFO **/
+
+ALTER TABLE wiezienie.wiezien_info ADD CONSTRAINT wiezien_wiezien_info_fk
+FOREIGN KEY (id_wieznia)
+REFERENCES wiezienie.wiezien (id_wieznia)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE wiezienie.wiezien_info ADD CONSTRAINT cela_wiezien_info_fk
+FOREIGN KEY (id_celi)
+REFERENCES wiezienie.cela (id_celi)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE wiezienie.wiezien_info ADD CONSTRAINT depozyt_wiezien_info_fk
+FOREIGN KEY (id_depozytu)
+REFERENCES wiezienie.depozyt (id_depozytu)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE wiezienie.wiezien_info ADD CONSTRAINT wyrok_wiezien_info_fk
+FOREIGN KEY (id_wyroku)
+REFERENCES wiezienie.wyrok (id_wyroku)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+
+/** TABELA PRACOWNIK_INFO **/
+
+ALTER TABLE wiezienie.pracownik_info ADD CONSTRAINT pracownik_pracownik_info_fk
+FOREIGN KEY (id_pracownika)
+REFERENCES wiezienie.pracownik (id_pracownika)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE wiezienie.pracownik_info ADD CONSTRAINT zawod_pracownik_info_fk
+FOREIGN KEY (id_zawodu)
+REFERENCES wiezienie.zawod (id_zawodu)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE wiezienie.pracownik_info ADD CONSTRAINT pokoj_pracownik_info_fk
+FOREIGN KEY (id_pokoju)
+REFERENCES wiezienie.pokoj (id_pokoju)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+
+/** TABELA CELA **/
+
+ALTER TABLE wiezienie.cela ADD CONSTRAINT segment_cela_fk
+FOREIGN KEY (id_segmentu)
+REFERENCES wiezienie.segment (id_segmentu)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+
+/** TABELA POKOJ **/
+
+ALTER TABLE wiezienie.pokoj ADD CONSTRAINT segment_pokoj_fk
+FOREIGN KEY (id_segmentu)
+REFERENCES wiezienie.segment (id_segmentu)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE wiezienie.pokoj ADD CONSTRAINT depozyt_pokoj_fk
+FOREIGN KEY (id_depozytu)
+REFERENCES wiezienie.depozyt (id_depozytu)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+
+/** TABELA DEPOZYT **/
+
+ALTER TABLE wiezienie.depozyt ADD CONSTRAINT zasob_depozyt_fk
+FOREIGN KEY (id_zasobu)
+REFERENCES wiezienie.zasob (id_zasobu)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
