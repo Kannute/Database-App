@@ -74,17 +74,25 @@ INSERT INTO wiezienie.zawod VALUES(DEFAULT, 'Personel pielegniarski');
 INSERT INTO wiezienie.zawod VALUES(DEFAULT, 'Personel gastronomiczny');
 INSERT INTO wiezienie.zawod VALUES(DEFAULT, 'Personel sprzatajacy');
 
-/** DEPOZYT **/
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Zasob naczelnika', 10);
+/** POKOJE **/
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj naczelnika', 1);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj strazniczy', 1);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj strazniczy', 1);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Kuchnia', 1);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Kotłownia', 1);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Piwnica', 1);
 
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Zasob strazniczy', 1);
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Zasob strazniczy', 2);
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Zasob strazniczy', 3);
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Zasob strazniczy', 4);
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Zasob strazniczy', 5);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj naczelnika', 2);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj strazniczy', 2);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj strazniczy', 2);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Kuchnia', 2);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Kotłownia', 2);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Piwnica', 2);
 
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Zasob kuchenny', 6);
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Zasob kuchenny', 7);
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Zasob kuchenny', 8);
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Zasob kuchenny', 9);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj naczelnika', 3);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj strazniczy', 3);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj strazniczy', 3);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj strazniczy', 3);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Kuchnia', 3);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Piwnica', 3);
 

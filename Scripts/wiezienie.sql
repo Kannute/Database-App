@@ -122,7 +122,6 @@ CREATE TABLE wiezienie.pokoj(
                 id_pokoju INTEGER NOT NULL DEFAULT nextval('wiezienie.pokoj_id_pokoju_seq'),
                 nazwa_pokoju VARCHAR NOT NULL,
                 id_segmentu INTEGER NOT NULL,
-                id_depozytu INTEGER NOT NULL,
                 CONSTRAINT pokoj_pk PRIMARY KEY (id_pokoju)
 );
 
@@ -135,6 +134,7 @@ CREATE SEQUENCE wiezienie.depozyt_id_depozytu_seq;
 CREATE TABLE wiezienie.depozyt(
                 id_depozytu INTEGER NOT NULL DEFAULT nextval('wiezienie.depozyt_id_depozytu_seq'),
                 nazwa VARCHAR NOT NULL,
+                id_pokoju INTEGER NOT NULL,
                 id_zasobu INTEGER NOT NULL,
                 CONSTRAINT depozyt_pk PRIMARY KEY (id_depozytu)
 );
@@ -231,12 +231,6 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE wiezienie.pokoj ADD CONSTRAINT depozyt_pokoj_fk
-FOREIGN KEY (id_depozytu)
-REFERENCES wiezienie.depozyt (id_depozytu)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
 
 
 /** TABELA DEPOZYT **/
@@ -244,6 +238,14 @@ NOT DEFERRABLE;
 ALTER TABLE wiezienie.depozyt ADD CONSTRAINT zasob_depozyt_fk
 FOREIGN KEY (id_zasobu)
 REFERENCES wiezienie.zasoby (id_zasobu)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+
+ALTER TABLE wiezienie.depozyt ADD CONSTRAINT pokoj_depozyt_fk
+FOREIGN KEY (id_pokoju)
+REFERENCES wiezienie.pokoj (id_pokoju)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
