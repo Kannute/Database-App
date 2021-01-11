@@ -15,14 +15,14 @@ CREATE TABLE wiezienie.wiezien(
                 CONSTRAINT wiezien_pk PRIMARY KEY (id_wieznia)
 );
 
-ALTER SEQUENCE wiezienie.wiezien_id_seq OWNED BY wiezienie.wiezien.id_wieznia;
+ALTER SEQUENCE wiezienie.wiezien_id_wieznia_seq OWNED BY wiezienie.wiezien.id_wieznia;
 
 
 /**** TABELA WIEZIEN INFO ****/
 
 CREATE SEQUENCE wiezienie.wiezien_info_id_wpisu_seq;
 
-CREATE TABLE wiezien_info(
+CREATE TABLE wiezienie.wiezien_info(
                 id_wpisu INTEGER NOT NULL DEFAULT nextval('wiezienie.wiezien_info_id_wpisu_seq'),
                 id_wieznia INTEGER NOT NULL,
                 id_celi INTEGER NOT NULL,
@@ -51,23 +51,23 @@ ALTER SEQUENCE wiezienie.pracownik_id_pracownika_seq OWNED BY wiezienie.pracowni
 /**** TABELA PRACOWNIK_INFO ****/
 CREATE SEQUENCE wiezienie.pracownik_info_pracownik_info_id_seq;
 
-CREATE TABLE pracownik_info(
+CREATE TABLE wiezienie.pracownik_info(
                 pracownik_info_id INTEGER NOT NULL DEFAULT nextval('wiezienie.pracownik_info_pracownik_info_id_seq'),
                 id_zawodu INTEGER NOT NULL,
                 id_pracownika INTEGER NOT NULL,
                 id_pokoju INTEGER NOT NULL,
-                ADD CONSTRAINT pracownik_info_pk PRIMARY KEY (pracownik_info_id)
+                CONSTRAINT pracownik_info_pk PRIMARY KEY (pracownik_info_id)
 );
 
-ALTER SEQUENCE wiezienie.pracownik_info_pracownik_info_id_seq OWNED BY pracownik_info.pracownik_info_id;
+ALTER SEQUENCE wiezienie.pracownik_info_pracownik_info_id_seq OWNED BY wiezienie.pracownik_info.pracownik_info_id;
 
 /**** TABELA ZAWOD ****/
 CREATE SEQUENCE wiezienie.zawod_id_zawodu_seq;
 
-CREATE TABLE zawod(
+CREATE TABLE wiezienie.zawod(
                 id_zawodu INTEGER NOT NULL DEFAULT nextval('wiezienie.zawod_id_zawodu_seq'),
                 nazwa VARCHAR,
-                ADD CONSTRAINT zawod_pk PRIMARY KEY (id_zawodu)
+                CONSTRAINT zawod_pk PRIMARY KEY (id_zawodu)
 );
 
 ALTER SEQUENCE wiezienie.zawod_id_zawodu_seq OWNED BY wiezienie.zawod.id_zawodu;
@@ -76,7 +76,7 @@ ALTER SEQUENCE wiezienie.zawod_id_zawodu_seq OWNED BY wiezienie.zawod.id_zawodu;
 /**** TABELA WYROK ****/
 CREATE SEQUENCE wiezienie.wyrok_id_wyroku_seq;
 
-CREATE TABLE wyrok(
+CREATE TABLE wiezienie.wyrok(
                 id_wyroku INTEGER NOT NULL DEFAULT nextval('wiezienie.wiezien_info_id_wpisu_seq'),
                 nazwa_wyroku VARCHAR NOT NULL,
                 data_rozpoczecia DATE NOT NULL,
@@ -90,12 +90,12 @@ ALTER SEQUENCE wiezienie.wyrok_id_wyroku_seq OWNED BY wiezienie.wyrok.id_wyroku;
 /**** TABELA CELA ****/
 CREATE SEQUENCE wiezienie.cela_id_celi_seq;
 
-CREATE TABLE cela(
+CREATE TABLE wiezienie.cela(
                 id_celi INTEGER NOT NULL DEFAULT nextval('wiezienie.cela_id_celi_seq'),
                 nr_celi INTEGER NOT NULL,
                 ilosc_miejsc INTEGER NOT NULL,
                 id_segmentu INTEGER NOT NULL,
-                typ_celi VARCHAR NOT NULL
+                typ_celi VARCHAR NOT NULL,
                 CONSTRAINT cela_pk PRIMARY KEY (id_celi)
 );
 
@@ -105,20 +105,20 @@ ALTER SEQUENCE wiezienie.cela_id_celi_seq OWNED BY wiezienie.cela.id_celi;
 /**** TABELA SEGMENT ****/
 CREATE SEQUENCE wiezienie.segment_id_segmentu_seq;
 
-CREATE TABLE segment(
-                id_segmentu INTEGER NOT NULL DEFAULT nextval('wizienie.segment_id_segmentu_seq'),
+CREATE TABLE wiezienie.segment(
+                id_segmentu INTEGER NOT NULL DEFAULT nextval('wiezienie.segment_id_segmentu_seq'),
                 nazwa_segmentu VARCHAR NOT NULL,
                 id_naczelnika INTEGER NOT NULL,
                 CONSTRAINT segment_pk PRIMARY KEY (id_segmentu)
 );
 
-ALTER SEQUENCE wiezienie.segment_id_segmentu_seq OWNED BY wizienie.segment.id_segmentu;
+ALTER SEQUENCE wiezienie.segment_id_segmentu_seq OWNED BY wiezienie.segment.id_segmentu;
 
 
 /**** TABELA POKOJ ****/
 CREATE SEQUENCE wiezienie.pokoj_id_pokoju_seq;
 
-CREATE TABLE pokoj(
+CREATE TABLE wiezienie.pokoj(
                 id_pokoju INTEGER NOT NULL DEFAULT nextval('wiezienie.pokoj_id_pokoju_seq'),
                 nazwa_pokoju VARCHAR NOT NULL,
                 id_segmentu INTEGER NOT NULL,
@@ -132,7 +132,7 @@ ALTER SEQUENCE wiezienie.pokoj_id_pokoju_seq OWNED BY wiezienie.pokoj.id_pokoju;
 /**** TABELA DEPOZYT ****/
 CREATE SEQUENCE wiezienie.depozyt_id_depozytu_seq;
 
-CREATE TABLE depozyt(
+CREATE TABLE wiezienie.depozyt(
                 id_depozytu INTEGER NOT NULL DEFAULT nextval('wiezienie.depozyt_id_depozytu_seq'),
                 nazwa VARCHAR NOT NULL,
                 id_zasobu INTEGER NOT NULL,
@@ -145,14 +145,14 @@ ALTER SEQUENCE wiezienie.depozyt_id_depozytu_seq OWNED BY wiezienie.depozyt.id_d
 /**** TABELA ZASOBY ****/
 CREATE SEQUENCE wiezienie.zasoby_id_zasobu_seq;
 
-CREATE TABLE zasoby(
+CREATE TABLE wiezienie.zasoby(
                 id_zasobu INTEGER NOT NULL DEFAULT nextval('wiezienie.zasoby_id_zasobu_seq'),
                 nazwa VARCHAR NOT NULL,
                 ilosc INTEGER NOT NULL,
-                ADD CONSTRAINT zasoby_id OWNED BY wiezienie.zasoby.id_zasobu
+                CONSTRAINT zasoby_id PRIMARY KEY (id_zasobu)
 );
 
-ALTER SEQUENCE wiezienie.zasoby_id_zasobu_seq OWNED BY wizienie.zasoby.zasoby_id;
+ALTER SEQUENCE wiezienie.zasoby_id_zasobu_seq OWNED BY wiezienie.zasoby.id_zasobu;
 
 
 /***** NADAWANIE KLUCZY OBCYCH *****/
@@ -243,7 +243,7 @@ NOT DEFERRABLE;
 
 ALTER TABLE wiezienie.depozyt ADD CONSTRAINT zasob_depozyt_fk
 FOREIGN KEY (id_zasobu)
-REFERENCES wiezienie.zasob (id_zasobu)
+REFERENCES wiezienie.zasoby (id_zasobu)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
