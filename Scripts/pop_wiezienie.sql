@@ -182,12 +182,32 @@ INSERT INTO wiezienie.pracownik_info VALUES(DEFAULT, 6, 23, 5);
 INSERT INTO wiezienie.pracownik VALUES(DEFAULT, 'Alutka', 'Lutowicz');
 INSERT INTO wiezienie.pracownik_info VALUES(DEFAULT, 6, 24, 11);
 
-/** Wiezniowie **/
-
+/** WIEZNIOWIE **/
+INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, idwieznia, idceli, iddepozytu, idwyroku);
 INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Tomasz', 'Karolak', '88051032171');
+INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Rozboj', '2021-01-12', '2021-12-31');
+INSERT INTO wiezienie.zasob VALUES(DEFAULT, 'Zegarek', 1);
+INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt wieznia', 2, 11);
+INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, 1, 1, 16,1);
+
 INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Hans', 'Landa', '20050225312');
+INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Morderstwo', '2021-01-12', null);
+INSERT INTO wiezienie.zasob VALUES(DEFAULT, 'Scyzoryk', 1);
+INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt wieznia', 2, 12);
+INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, 2, 2, 17,2);
+
 INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Józef', 'Fritzl', '16211029712');
+INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Morderstwo', '2021-01-12', null);
+INSERT INTO wiezienie.zasob VALUES(DEFAULT, 'Scyzoryk', 1);
+INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt wieznia', 2, 12);
+INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, 3, 3, 18,3);
+
 INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Andreas', 'Breivik', '98030606879');
+
 INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Wojciech', 'Jaruzelski', '31030115774');
 INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Jaroslaw', 'Kaczkowski', '87062616372');
-INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Jan', 'Paweł', '75082525611');
+INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Janusz', 'Pawlacz', '75082525611');
+
+INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Anna', 'Grodkiewicz', '06100402166');
+INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Kaja', 'Modek', '57091726041');
+INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Hanna', 'Jantar', '17110842620');
