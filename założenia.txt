@@ -46,19 +46,21 @@
 
 3. Personel więzienny
 	
-	- Naczelnik więzienia
 	- Naczelnik odziału
 	- Strażnicy
 	- Lekarze
 	- Pielęgniarki/rze
 	- Personel sprzątający
-	- Szef kuchni
+	- Personel gastronomiczny
 
 	
 4. Raporty
 	-Wykaz wolnych cel/miejsc w celach
 	-Wykaz segmentów z odpowiadającym im personelem
 	-Wykaz więźniów z pozostałym czasem odbywania wyroku
+	-Wykaz więźniów wraz z wyrokami
+	-Wykaz wieźniów z dożywotnim wyrokiem
+	
 
 5. Zasoby 
 	- sprzęt strażniczy (ubrania ochronne, broń)

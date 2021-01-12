@@ -77,7 +77,7 @@ ALTER SEQUENCE wiezienie.zawod_id_zawodu_seq OWNED BY wiezienie.zawod.id_zawodu;
 CREATE SEQUENCE wiezienie.wyrok_id_wyroku_seq;
 
 CREATE TABLE wiezienie.wyrok(
-                id_wyroku INTEGER NOT NULL DEFAULT nextval('wiezienie.wiezien_info_id_wpisu_seq'),
+                id_wyroku INTEGER NOT NULL DEFAULT nextval('wiezienie.wyrok_id_wyroku_seq'),
                 nazwa_wyroku VARCHAR NOT NULL,
                 data_rozpoczecia DATE NOT NULL,
                 data_zakonczenia DATE,
