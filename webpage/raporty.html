@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raporty wiezienne</title>
-    <link rel="stylesheet" href="style/styleRaports.css">
+    <link rel="stylesheet" href="public/style/styleRaports.css">
 </head>
 <body>
     <div id="formularzDiv">
@@ -18,6 +18,8 @@
     </div>
 </body>
 <script>
+
+    /* Raport wszystkich więźniów */
     const btnAllPrisoners = document.getElementById("btnAllPrisoners");
     btnAllPrisoners.addEventListener("click", async e=>{
         readAllPrisoners()
@@ -25,7 +27,7 @@
             alert("Failed");
     })
 
-    readAllPrisoners();
+    //readAllPrisoners();
     async function readAllPrisoners(){
         try{
             const olRaport = document.getElementById("olRaport");
@@ -36,9 +38,7 @@
             const raport = await result.json();
             raport.forEach(t=>{
                 const li = document.createElement("li");
-                li.imie = t.imie;
-                li.nazwisko = t.nazwisko;
-                li.wyrok = t.wyrok;
+                li.textContent = t.imie +" "+ t.nazwisko+" "+t.wyrok;
                 li.id = t.id;
                 olRaport.appendChild(li);
             })
