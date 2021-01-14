@@ -8,7 +8,7 @@
 </head>
 <body>
     <div id="formularzDiv">
-        <ol id="raport">
+        <ol id="olRaport">
 
         </ol>
         <p id="welcomeP">Ponizej znajduja sie dostepne raporty. <br>
@@ -20,7 +20,32 @@
 <script>
     const btnAllPrisoners = document.getElementById("btnAllPrisoners");
     btnAllPrisoners.addEventListener("click", async e=>{
-        
+        readAllPrisoners()
+        if(!result.success) 
+            alert("Failed");
     })
+
+    readAllPrisoners();
+    async function readAllPrisoners(){
+        try{
+            const olRaport = document.getElementById("olRaport");
+            while(olRaport.firstChild)
+                olRaport.removeChild(olRaport.firstChild);
+
+            const result = await fetch("http://localhost:8080/wszyscy_wiezniowie", {method:"GET"})
+            const raport = await result.json();
+            raport.forEach(t=>{
+                const li = document.createElement("li");
+                li.imie = t.imie;
+                li.nazwisko = t.nazwisko;
+                li.wyrok = t.wyrok;
+                li.id = t.id;
+                olRaport.appendChild(li);
+            })
+        }
+        catch(e){
+            console.log("Error reading all prisoners");
+        }
+    }
 </script>
 </html>
