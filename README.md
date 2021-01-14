@@ -5,15 +5,19 @@
 
 ### UŻYTE JĘZYKI
 * PostgreSQL
+* HTML, CSS
+* JavaScript
 
 ### UŻYTE TECHNOLOGIE
-* jeszcze żadne XD
+* NodeJS
 
 #### ENG
 ## App operating on prison's database.
 
 ### Languages used
 * PostgreSQL
+* HTML, CSS
+* JavaScript
 
 ### Technologies used
-* none.. yet.
+* NodeJS
