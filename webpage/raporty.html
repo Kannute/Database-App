@@ -12,9 +12,10 @@
 
         </ol>
         <p id="welcomeP">Ponizej znajduja sie dostepne raporty. <br>
-            <button id="btnAllPrisoners"> Pokaż więźniów! </button>
-            <button id="btnLifeSentencePrisonsers"> Pokaż więźniów z dożywotnim wyrokiem! </button>
-            <button id="btnAllEmployees"> Pokaż pracowników! </button>
+            <button id="btnAllPrisoners"> Pokaż więźniów! </button> <br>
+            <button id="btnLifeSentencePrisonsers"> Pokaż więźniów z dożywotnim wyrokiem! </button> <br>
+            <button id="btnAllEmployees"> Pokaż pracowników! </button> <br>
+            <button id="btnPrisonersDeposit"> Pokaż depozyt więźniów! </button> <br>
             
         </p>
     </div>
@@ -40,6 +41,14 @@
     const btnAllEmployees = document.getElementById("btnAllEmployees");
     btnAllEmployees.addEventListener("click", async e=>{
         readAllEmployees()
+        if(!result.success) 
+            alert("Failed");
+    })
+
+    /*Raport depozytu wiezniow*/
+    const btnPrisonersDeposit = document.getElementById("btnPrisonersDeposit");
+    btnPrisonersDeposit.addEventListener("click", async e=>{
+        readPrisonersDeposit()
         if(!result.success) 
             alert("Failed");
     })
@@ -98,6 +107,27 @@
             raport.forEach(t=>{
                 const li = document.createElement("li");
                 li.textContent = t.imie +" "+ t.nazwisko+" "+t.zawod +" " +t.pokoj + " "+t.segment;
+                li.id = t.id;
+                olRaport.appendChild(li);
+            })
+        }
+        catch(e){
+            console.log("Error reading all prisoners");
+        }
+    }
+
+        //readAllEmployees();
+        async function readPrisonersDeposit(){
+        try{
+            const olRaport = document.getElementById("olRaport");
+            while(olRaport.firstChild)
+                olRaport.removeChild(olRaport.firstChild);
+
+            const result = await fetch("http://localhost:8080/depozyt_wiezniow", {method:"GET"})
+            const raport = await result.json();
+            raport.forEach(t=>{
+                const li = document.createElement("li");
+                li.textContent = t.imie +" "+ t.nazwisko+" "+t.nazwa +" " +t.ilosc;
                 li.id = t.id;
                 olRaport.appendChild(li);
             })

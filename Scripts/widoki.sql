@@ -21,3 +21,8 @@ CREATE VIEW wszyscy_pracownicy AS SELECT p.imie, p.nazwisko, z.nazwa as zawod, p
 wiezienie.pracownik p, wiezienie.pracownik_info pi, wiezienie.zawod z, wiezienie.pokoj po, wiezienie.segment s WHERE
 p.id_pracownika = pi.id_pracownika and pi.id_zawodu = z.id_zawodu and pi.id_pokoju = po.id_pokoju and po.id_segmentu = s.id_segmentu
 ORDER BY s.id_segmentu;
+
+/*SPIS RZECZY NALEZACYCH DO WIEZNIOW */
+CREATE VIEW depozyt_wiezniow AS SELECT  w.imie, w.nazwisko, z.nazwa, z.ilosc FROM wiezienie.wiezien w, wiezienie.wiezien_info wi, wiezienie.depozyt d, wiezienie.zasoby z WHERE
+w.id_wieznia = wi.id_wieznia AND wi.id_depozytu = d.id_depozytu AND d.id_zasobu = z.id_zasobu;
+

@@ -31,6 +31,12 @@ app.get("/wszyscy_pracownicy", async(req,res)=> {
     res.send(JSON.stringify(rows))
 })
 
+app.get("/depozyt_wiezniow", async(req,res)=> {
+    const rows = await readPrisonersDeposit();
+    res.setHeader("content-type", "application/json");
+    res.send(JSON.stringify(rows))
+})
+
 
 app.listen(8080, () => console.log("Web server is listening.. on port 8080"))
 start()
@@ -73,6 +79,18 @@ async function readLifeSentencePrisoners(){
 async function readAllEmployees(){
     try{
         const results = await pool.query("select * from wszyscy_pracownicy;");
+        //console.table(JSON.stringify(results.rows));
+        return results.rows;
+    }
+    catch(e){
+        return [];
+    }
+}
+
+
+async function readPrisonersDeposit(){
+    try{
+        const results = await pool.query("select * from depozyt_wiezniow;");
         //console.table(JSON.stringify(results.rows));
         return results.rows;
     }
