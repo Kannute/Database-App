@@ -1,10 +1,12 @@
-const {Client} = require('pg')
-const client = new Client("//rrmazoiy:7UbgjJtkYd5IZqPZlBAIenrECU1rbHL0@hattie.db.elephantsql.com:5432/rrmazoiy");
+const {Pool} = require("pg")
+const express = require ("express")
+const app = express();
+app.use(express.json());
+const pool = new Pool({
+    user: "rrmazoiy",
+    host: "hattie.db.elephantsql.com",
+    database: "rrmazoiy",
+    password: "7UbgjJtkYd5IZqPZlBAIenrECU1rbHL0" 
+});
 
-client.connect()
-.then(()=> console.log("Connected Succesfuly"))
-.then(() => client.query("select * from test"))
-.then(results => console.table(results.rows))
-.catch(e => console.log)
-.finally(()=> client.end());
-
+app.get("/", (req, res) => res.sendFile(`${__dirname}/index.html`))
