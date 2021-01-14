@@ -13,6 +13,8 @@
         </ol>
         <p id="welcomeP">Ponizej znajduja sie dostepne raporty. <br>
             <button id="btnAllPrisoners"> Pokaż więźniów! </button>
+            <button id="btnLifeSentencePrisonsers"> Pokaż więźniów z dożywotnim wyrokiem! </button>
+            <button id="btnAllEmployees"> Pokaż pracowników! </button>
             
         </p>
     </div>
@@ -23,6 +25,21 @@
     const btnAllPrisoners = document.getElementById("btnAllPrisoners");
     btnAllPrisoners.addEventListener("click", async e=>{
         readAllPrisoners()
+        if(!result.success) 
+            alert("Failed");
+    })
+    /* Raport dożywotnich więźniów */
+    const btnLifeSentencePrisonsers = document.getElementById("btnLifeSentencePrisonsers");
+    btnLifeSentencePrisonsers.addEventListener("click", async e=>{
+        readLifeSentencePrisoners()
+        if(!result.success) 
+            alert("Failed");
+    })
+
+    /*Raport wszystkich pracowników*/
+    const btnAllEmployees = document.getElementById("btnAllEmployees");
+    btnAllEmployees.addEventListener("click", async e=>{
+        readAllEmployees()
         if(!result.success) 
             alert("Failed");
     })
@@ -39,6 +56,48 @@
             raport.forEach(t=>{
                 const li = document.createElement("li");
                 li.textContent = t.imie +" "+ t.nazwisko+" "+t.wyrok;
+                li.id = t.id;
+                olRaport.appendChild(li);
+            })
+        }
+        catch(e){
+            console.log("Error reading all prisoners");
+        }
+    }
+
+    //readLifeSentencePrisoners();
+    async function readLifeSentencePrisoners(){
+        try{
+            const olRaport = document.getElementById("olRaport");
+            while(olRaport.firstChild)
+                olRaport.removeChild(olRaport.firstChild);
+
+            const result = await fetch("http://localhost:8080/dozywotni_wiezniowie", {method:"GET"})
+            const raport = await result.json();
+            raport.forEach(t=>{
+                const li = document.createElement("li");
+                li.textContent = t.imie +" "+ t.nazwisko+" "+t.wyrok;
+                li.id = t.id;
+                olRaport.appendChild(li);
+            })
+        }
+        catch(e){
+            console.log("Error reading all prisoners");
+        }
+    }
+
+    //readAllEmployees();
+    async function readAllEmployees(){
+        try{
+            const olRaport = document.getElementById("olRaport");
+            while(olRaport.firstChild)
+                olRaport.removeChild(olRaport.firstChild);
+
+            const result = await fetch("http://localhost:8080/wszyscy_pracownicy", {method:"GET"})
+            const raport = await result.json();
+            raport.forEach(t=>{
+                const li = document.createElement("li");
+                li.textContent = t.imie +" "+ t.nazwisko+" "+t.zawod +" " +t.pokoj + " "+t.segment;
                 li.id = t.id;
                 olRaport.appendChild(li);
             })

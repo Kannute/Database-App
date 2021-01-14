@@ -1,8 +1,6 @@
 const {Pool} = require("pg")
 const express = require ("express");
 const app = express();
-var path = require('path');
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 const pool = new Pool({
     user: "rrmazoiy",
@@ -17,6 +15,18 @@ app.get("/raporty.html", (req, res) => res.sendFile(`${__dirname}/raporty.html`)
 
 app.get("/wszyscy_wiezniowie", async(req,res)=> {
     const rows = await readAllPrisoners();
+    res.setHeader("content-type", "application/json");
+    res.send(JSON.stringify(rows))
+})
+
+app.get("/dozywotni_wiezniowie", async(req,res)=> {
+    const rows = await readLifeSentencePrisoners();
+    res.setHeader("content-type", "application/json");
+    res.send(JSON.stringify(rows))
+})
+
+app.get("/wszyscy_pracownicy", async(req,res)=> {
+    const rows = await readAllEmployees();
     res.setHeader("content-type", "application/json");
     res.send(JSON.stringify(rows))
 })
@@ -41,6 +51,28 @@ async function connect(){
 async function readAllPrisoners(){
     try{
         const results = await pool.query("select * from wszyscy_wiezniowie;");
+        //console.table(JSON.stringify(results.rows));
+        return results.rows;
+    }
+    catch(e){
+        return [];
+    }
+}
+
+async function readLifeSentencePrisoners(){
+    try{
+        const results = await pool.query("select * from dozywotni_wiezniowie;");
+        //console.table(JSON.stringify(results.rows));
+        return results.rows;
+    }
+    catch(e){
+        return [];
+    }
+}
+
+async function readAllEmployees(){
+    try{
+        const results = await pool.query("select * from wszyscy_pracownicy;");
         //console.table(JSON.stringify(results.rows));
         return results.rows;
     }
