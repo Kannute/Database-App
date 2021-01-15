@@ -11,6 +11,7 @@ const pool = new Pool({
 
 
 app.get("/", (req, res) => res.sendFile(`${__dirname}/index.html`))
+app.get("/index.html", (req, res) => res.sendFile(`${__dirname}/index.html`))
 app.get("/raporty.html", (req, res) => res.sendFile(`${__dirname}/raporty.html`))
 
 app.get("/wszyscy_wiezniowie", async(req,res)=> {
