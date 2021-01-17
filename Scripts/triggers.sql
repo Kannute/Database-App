@@ -1,6 +1,6 @@
 /** SPRAWDZANIE CZY ZASOB JUZ ISTNIEJE**/
 
-CREATE FUNCTION wiezienie.sprawdzZasoby() RETURNS TRIGGER AS'
+CREATE OR REPLACE FUNCTION wiezienie.sprawdzZasoby() RETURNS TRIGGER AS'
 DECLARE 
     zasob record;
 BEGIN
@@ -22,7 +22,7 @@ CREATE TRIGGER zasobySprawdz BEFORE INSERT OR UPDATE ON wiezienie.zasoby
 FOR EACH ROW EXECUTE PROCEDURE wiezienie.sprawdzZasoby();
 
 /** SPRAWDZANIE DOSTEPNOSCI MIEJSCA W CELI**/
-CREATE FUNCTION wiezienie.dostepnoscCeli() RETURNS TRIGGER AS'
+CREATE OR REPLACE  FUNCTION wiezienie.dostepnoscCeli() RETURNS TRIGGER AS'
 DECLARE
     cela record;
 BEGIN 
@@ -40,7 +40,7 @@ CREATE TRIGGER celiDostepnosc BEFORE INSERT OR UPDATE ON wiezienie.wiezien_info
 FOR EACH ROW EXECUTE PROCEDURE wiezienie.dostepnoscCeli();
 
 /** ZMIANA ILOSCI MIEJSC W CELI **/
-CREATE FUNCTION wiezienie.zmianaIlosciMiejscCeli() RETURNS TRIGGER AS'
+CREATE OR REPLACE  FUNCTION wiezienie.zmianaIlosciMiejscCeli() RETURNS TRIGGER AS'
 DECLARE
     cela_record record;
 BEGIN
@@ -61,7 +61,7 @@ FOR EACH ROW EXECUTE PROCEDURE wiezienie.zmianaIlosciMiejscCeli();
 
 /**  SPRAWDZANIE CZY NIE MA TAKIEGO SAMEGO WIEZNIA (PESEL) **/
 
-CREATE FUNCTION wiezienie.istniejeWiezien() RETURNS TRIGGER AS'
+CREATE OR REPLACE  FUNCTION wiezienie.istniejeWiezien() RETURNS TRIGGER AS'
 DECLARE 
     wiezien record;
 BEGIN

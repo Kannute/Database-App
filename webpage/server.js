@@ -9,9 +9,12 @@ const pool = new Pool({
     password: "7UbgjJtkYd5IZqPZlBAIenrECU1rbHL0" 
 });
 
+app.use(express.static(__dirname + '/public'));
 
 app.get("/", (req, res) => res.sendFile(`${__dirname}/index.html`))
+app.get("/index.html", (req, res) => res.sendFile(`${__dirname}/index.html`))
 app.get("/raporty.html", (req, res) => res.sendFile(`${__dirname}/raporty.html`))
+app.get("/wpisy.html", (req, res) => res.sendFile(`${__dirname}/wpisy.html`))
 
 app.get("/wszyscy_wiezniowie", async(req,res)=> {
     const rows = await readAllPrisoners();
@@ -57,7 +60,6 @@ async function connect(){
 async function readAllPrisoners(){
     try{
         const results = await pool.query("select * from wszyscy_wiezniowie;");
-        //console.table(JSON.stringify(results.rows));
         return results.rows;
     }
     catch(e){
@@ -68,7 +70,6 @@ async function readAllPrisoners(){
 async function readLifeSentencePrisoners(){
     try{
         const results = await pool.query("select * from dozywotni_wiezniowie;");
-        //console.table(JSON.stringify(results.rows));
         return results.rows;
     }
     catch(e){
