@@ -155,6 +155,19 @@ CREATE TABLE wiezienie.zasoby(
 ALTER SEQUENCE wiezienie.zasoby_id_zasobu_seq OWNED BY wiezienie.zasoby.id_zasobu;
 
 
+/*TABLICA POMOCNICZA DO WPISU WIEZNIA DO WIEZIENIA*/
+CREATE TABLE wiezienie.wpis_wieznia(
+                imie VARCHAR NOT NULL,
+                nazwisko VARCHAR NOT NULL,
+                pesel NUMERIC NOT NULL,
+                nr_celi INTEGER NOT NULL,
+                nr_segmentu INTEGER NOT NULL,  
+                nazwa_wyroku VARCHAR NOT NULL,
+                data_zakonczenia_wyroku DATE,
+                nazwa_depozytu VARCHAR NOT NULL,
+                ilosc_depozytowa INTEGER NOT NULL
+);
+
 /***** NADAWANIE KLUCZY OBCYCH *****/
 
 /** TABELA WIEZIEN_INFO **/

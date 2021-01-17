@@ -78,3 +78,49 @@ END;
 CREATE TRIGGER wiezienIstnieje BEFORE INSERT on wiezienie.wiezien
 FOR EACH ROW EXECUTE PROCEDURE wiezienie.istniejeWiezien();
 
+
+
+/**  WYZWALACZ DO WPISU WIEZNIA DO WIEZIENIA **/
+
+CREATE OR REPLACE FUNCTION wiezienie.wpisWieznia() RETURNS TRIGGER AS'
+DECLARE
+    zasob_id int ;
+    wiezien_id int ;
+    depozyt_id int ;
+    cela_id int ;
+    wyrok_id int ;
+BEGIN
+    INSERT INTO wiezienie.wiezien VALUES (DEFAULT, NEW."imie", NEW."nazwisko", NEW."pesel");
+    INSERT INTO wiezienie.wyrok VALUES (DEFAULT, NEW."nazwa_wyroku", current_date, NEW."data_zakonczenia_wyroku");
+    INSERT INTO wiezienie.zasoby VALUES (DEFAULT, NEW."nazwa_depozytu", NEW."ilosc_depozytowa");
+    
+    SELECT z.id_zasobu INTO zasob_id FROM wiezienie.zasoby z WHERE z.nazwa = NEW."nazwa_depozytu" and z.ilosc = NEW."ilosc_depozytowa";
+    SELECT w.id_wieznia INTO wiezien_id FROM wiezienie.wiezien w WHERE w.pesel = NEW."pesel";
+    SELECT c.id_celi INTO cela_id FROM wiezienie.cela c WHERE c.nr_celi = NEW."nr_celi";
+    SELECT w.id_wyroku INTO wyrok_id FROM wiezienie.wyrok w WHERE w.nazwa_wyroku = NEW."nazwa_wyroku" and w.data_zakonczenia = NEW."data_zakonczenia_wyroku";
+
+    IF(NEW."nr_segmentu" = 1) THEN    
+        INSERT INTO wiezienie.depozyt VALUES (DEFAULT, ''Depozyt wieznia'', 2, zasob_id);
+
+    ELSIF(NEW."nr_segmentu" = 2) THEN
+        INSERT INTO wiezienie.depozyt VALUES (DEFAULT, ''Depozyt wieznia'', 8, zasob_id);
+
+    ELSIF(NEW."nr_segmentu" = 3) THEN
+        INSERT INTO wiezienie.depozyt VALUES (DEFAULT, ''Depozyt wieznia'', 15, zasob_id);
+    ELSE 
+        RAISE NOTICE ''NIE MA TAKEIGO SEGMENTU!'';
+        RETURN NULL;
+
+    END IF;
+
+    SELECT d.id_depozytu INTO depozyt_id FROM wiezienie.depozyt d WHERE d.id_zasobu = zasob_id;
+
+    INSERT INTO wiezienie."wiezien_info" VALUES (DEFAULT, wiezien_id, cela_id, depozyt_id,  wyrok_id);
+
+    DELETE FROM wiezienie.wpis_wieznia wp WHERE wp.imie = NEW."imie";
+    RETURN NULL;
+END;
+' LANGUAGE 'plpgsql';
+
+CREATE TRIGGER wiezniaWpis AFTER INSERT ON wiezienie.wpis_wieznia 
+FOR EACH ROW EXECUTE PROCEDURE wiezienie.wpisWieznia();
