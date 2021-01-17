@@ -41,6 +41,22 @@ app.get("/depozyt_wiezniow", async(req,res)=> {
 })
 
 
+app.post("/wpis_wieznia", async (req, res) => {
+    let result = {}
+    try{
+        const reqJson = req.body;
+        result.success = await wpisWieznia(reqJson)
+    }
+    catch(e){
+        result.success=false;
+    }
+    finally{
+        res.setHeader("content-type", "application/json")
+        res.send(JSON.stringify(result))
+    }
+   
+})
+
 app.listen(8080, () => console.log("Web server is listening.. on port 8080"))
 start()
 
@@ -94,6 +110,18 @@ async function readPrisonersDeposit(){
         const results = await pool.query("select * from depozyt_wiezniow;");
         //console.table(JSON.stringify(results.rows));
         return results.rows;
+    }
+    catch(e){
+        return [];
+    }
+}
+
+async function wpis_wieznia(req){
+    try{
+        /**TODO DOKONCZYC TO!!!!!!!!!!!!! */
+        //const results = await pool.query("insert into wiezienie.wpis_wieznia values( ($1),  ($2), ($3), ($4), ($5), ($6) )",[req.imie],[req.nazwisko],[req.pesel],[req.imie]);
+        //console.table(JSON.stringify(results.rows));
+        return results;
     }
     catch(e){
         return [];
