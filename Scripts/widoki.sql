@@ -26,3 +26,6 @@ ORDER BY s.id_segmentu;
 CREATE VIEW depozyt_wiezniow AS SELECT  w.imie, w.nazwisko, z.nazwa, z.ilosc FROM wiezienie.wiezien w, wiezienie.wiezien_info wi, wiezienie.depozyt d, wiezienie.zasoby z WHERE
 w.id_wieznia = wi.id_wieznia AND wi.id_depozytu = d.id_depozytu AND d.id_zasobu = z.id_zasobu;
 
+/*SPIS DOSTEPNYCH CEL*/
+CREATE VIEW wszystkie_dostepne_cele AS SELECT c.nr_celi, c.ilosc_miejsc, c.typ_celi, s.nazwa_segmentu FROM wiezienie.cela c, wiezienie.segment s WHERE 
+c.ilosc_miejsc > 0 AND c.id_segmentu = s.id_segmentu;

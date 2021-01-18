@@ -116,6 +116,17 @@ async function readPrisonersDeposit(){
     }
 }
 
+async function readAllCells(){
+    try{
+        const results = await pool.query("select * from wszystkie_dostepne_cele;");
+        //console.table(JSON.stringify(results.rows));
+        return results.rows;
+    }
+    catch(e){
+        return [];
+    }
+}
+
 async function wpis_wieznia(req){
     try{
         /**TODO DOKONCZYC TO!!!!!!!!!!!!! */
