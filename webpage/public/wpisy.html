@@ -12,7 +12,7 @@
     <div id="tableDiv">
 
     </div> 
-    <div id="formularzDiv" action="/wpis_wieznia" method="POST">
+    <div id="formularzDiv">
         <p id="welcomeP">Wypelnij formularz wpisu wieznia.<br> <br>
             <form id="formularz">
                 <label for="fname">Imie:</label><br>
@@ -62,7 +62,7 @@
     </div>
 </body>
 <script>
-   /* const btnSubmit = document.getElementById("btnSubmit")
+   const btnSubmit = document.getElementById("btnSubmit")
     btnSubmit.addEventListener("click", async e=> {
                     const jsonRequest = {}
                     console.log("we are here 1")
@@ -80,6 +80,6 @@
                     result = await result.json();
                     if (!result.success)  alert("FAILED! ")
 
-     })*/
+     })
 </script>
 </html>
