@@ -65,7 +65,6 @@
     const btnSubmit = document.getElementById("btnSubmit")
     btnSubmit.addEventListener("click", async e=> {
                     const jsonRequest = {}
-                    console.log("we are here 1")
                     jsonRequest.fname = document.getElementById("fname").value
                     jsonRequest.lname = document.getElementById("lname").value
                     jsonRequest.peseltext = document.getElementById("peseltext").value
@@ -75,10 +74,20 @@
                     jsonRequest.enddate = document.getElementById("enddate").value
                     jsonRequest.depozyttext = document.getElementById("depozyttext").value
                     jsonRequest.depozytilosc = document.getElementById("depozytilosc").value
-                    let result = await fetch("http://localhost:8080/wpis_wieznia", {method: "POST", 
-                    headers: {"content-type": "application/json"}, body: JSON.stringify(jsonRequest) })
-                    result = await result.json();
-                    if (!result.success)  alert("FAILED! ")
+                    //console.log(JSON.stringify(jsonRequest))
+                    try{
+                        let result = await fetch("http://localhost:8080/wpis_wieznia", {method: "POST", 
+                        headers: {"content-type": "application/json"}, body: JSON.stringify(jsonRequest) })
+                        if(result=false)
+                            console.log("COs nie gra")
+                        else
+                            console.log("jednak ok")
+                        
+                    }
+                    catch(e){
+                        console.log("Wpisano rekord do bazy i przy okazji złapano wyjątek(???)")
+                    }
+                
 
      })
 </script>

@@ -49,7 +49,6 @@ app.get("/depozyt_wiezniow", async(req,res)=> {
 
 app.post("/wpis_wieznia", async (req, res) => {
     let result = {}
-    console.log("We are here2")
     try{
         const reqJson = req.body;
         result.success = await wpisWieznia(reqJson)
@@ -137,7 +136,7 @@ async function readAllCells(){
 
 async function wpisWieznia(dane){
     try{
-        console.log("we are here22")
+        /*TODO pomyslec nad triggerem - jak sprawdzic czy query bylo poprawne */
         const imie = dane.fname;
         const nazwisko= dane.lname;
         const pesel = dane.peseltext;
@@ -147,10 +146,13 @@ async function wpisWieznia(dane){
         const data_zakonczenia_wyroku = dane.enddate;
         const nazwa_depozytu = dane.depozyttext;
         const ilosc_depozytowa =  dane.depozytilosc;
-        console.log(imie +" " + nazwisko + " "+ pesel + " "+ nr_celi+ " "+ nr_segmentu + " "+ nazwa_wyroku + " "+data_zakonczenia_wyroku+ " "+nazwa_depozytu + " "+ilosc_depozytowa);
+        //console.log("insert into wiezienie.wpis_wieznia values( '"+ imie +"', '"+nazwisko+ "', "+Number(pesel)+","+parseInt(nr_celi,10)+","+parseInt(nr_segmentu,10)+",'"+nazwa_wyroku+"','"+data_zakonczenia_wyroku+"','"+nazwa_depozytu+"',"+parseInt(ilosc_depozytowa,10)+")")  
+        const queryResult = await pool.query("insert into wiezienie.wpis_wieznia values( '"+ imie +"', '"+nazwisko+ "', "+Number(pesel)+","+parseInt(nr_celi,10)+","+parseInt(nr_segmentu,10)+",'"+nazwa_wyroku+"','"+data_zakonczenia_wyroku+"','"+nazwa_depozytu+"',"+parseInt(ilosc_depozytowa,10)+")")
+        console.log(queryResult)
         return true;
     }
     catch(e){
+        console.log("Złapano wyjątek przy wpisie")
         return false;
     }
 }
