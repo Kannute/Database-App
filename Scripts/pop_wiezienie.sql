@@ -1,8 +1,8 @@
 /****  WYPELNIENIE BAZY DANYMI PODSTAWOWYMI ****/
 
 /* TRZY SEGMENTY Z ROZNYMI NACZELNIKAMI */
-INSERT INTO wiezienie.segment VALUES (DEFAULT, 'Segment Zenski', 2);
 INSERT INTO wiezienie.segment VALUES (DEFAULT, 'Segment Meski', 1);
+INSERT INTO wiezienie.segment VALUES (DEFAULT, 'Segment Zenski', 2);
 INSERT INTO wiezienie.segment VALUES (DEFAULT, 'Segment o zaostrzonym rygorze', 3);
 
 /* CELE */

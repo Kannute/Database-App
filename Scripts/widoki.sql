@@ -27,6 +27,6 @@ CREATE VIEW depozyt_wiezniow AS SELECT  w.imie, w.nazwisko, z.nazwa, z.ilosc FRO
 w.id_wieznia = wi.id_wieznia AND wi.id_depozytu = d.id_depozytu AND d.id_zasobu = z.id_zasobu;
 
 /*SPIS DOSTEPNYCH CEL*/
-/*TODO SEGREGACJA !! TODO ZMIANA ŻENKSI MĘSKI SGMENTY - POJEBALEM SEGMENTY W INSERTACH - DO NAPRAWY!!!*/
+/*TODO SEGREGACJA !!*/
 CREATE VIEW wszystkie_dostepne_cele AS SELECT c.nr_celi, c.ilosc_miejsc, c.typ_celi, s.nazwa_segmentu FROM wiezienie.cela c, wiezienie.segment s WHERE 
-c.ilosc_miejsc > 0 AND c.id_segmentu = s.id_segmentu;
+c.ilosc_miejsc > 0 AND c.id_segmentu = s.id_segmentu ORDER BY c.nr_celi;

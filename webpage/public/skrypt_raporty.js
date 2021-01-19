@@ -28,6 +28,15 @@
         if(!result.success) 
             alert("Failed");
     })
+    /*Raport wszystkich wolnych cel */
+    const btnShowCells = document.getElementById("btnShowCells");
+    btnShowCells.addEventListener("click", async e=>{
+    console.log("It works here")
+    readAllCells();
+    if(!result.success) 
+        alert("Failed");
+    })
+
 
     //readAllPrisoners();
     async function readAllPrisoners(){
@@ -80,6 +89,19 @@ async function readPrisonersDeposit(){
             console.log("Blad we wczytywaniu depozytu wiezniow!");
         }
     }
+
+async function readAllCells(){
+    try{
+        console.log("It works inside too")
+        const result = await fetch("http://localhost:8080/wszystkie_cele", {method:"GET"})
+        const raport = await result.json();
+
+        generateTable(raport);
+    }
+    catch(e){
+        console.log("Blad we wczytywaniu cel!");
+    }
+}
 
 
 function generateTable(raport){

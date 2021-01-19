@@ -22,6 +22,12 @@ app.get("/wszyscy_wiezniowie", async(req,res)=> {
     res.send(JSON.stringify(rows))
 })
 
+app.get("/wszystkie_cele", async(req,res)=> {
+    const rows = await readAllCells();
+    res.setHeader("content-type", "application/json");
+    res.send(JSON.stringify(rows))
+})
+
 app.get("/dozywotni_wiezniowie", async(req,res)=> {
     const rows = await readLifeSentencePrisoners();
     res.setHeader("content-type", "application/json");
@@ -43,6 +49,7 @@ app.get("/depozyt_wiezniow", async(req,res)=> {
 
 app.post("/wpis_wieznia", async (req, res) => {
     let result = {}
+    //console.log("We are here")
     try{
         const reqJson = req.body;
         result.success = await wpisWieznia(reqJson)
@@ -67,6 +74,7 @@ async function start(){
 async function connect(){
     try{
         await pool.connect();
+        
     }
     catch(e){
         console.log("Failed to connect");
@@ -127,14 +135,22 @@ async function readAllCells(){
     }
 }
 
-async function wpis_wieznia(req){
+async function wpisWieznia(dane){
     try{
-        /**TODO DOKONCZYC TO!!!!!!!!!!!!! */
-        //const results = await pool.query("insert into wiezienie.wpis_wieznia values( ($1),  ($2), ($3), ($4), ($5), ($6) )",[req.imie],[req.nazwisko],[req.pesel],[req.imie]);
-        //console.table(JSON.stringify(results.rows));
-        return results;
+        console.log("we are here22")
+        const imie = dane.fname;
+        const nazwisko= dane.lname;
+        const pesel = dane.peseltext;
+        const nr_celi = dane.cellno;
+        const nr_segmentu = dane.segmentno;
+        const nazwa_wyroku =  dane.wyroktext;
+        const data_zakonczenia_wyroku = dane.enddate;
+        const nazwa_depozytu = dane.depozyttext;
+        const ilosc_depozytowa =  dane.depozytilosc;
+        console.log(imie +" " + nazwisko + " "+ pesel + " "+ nr_celi+ " "+ nr_segmentu + " "+ nazwa_wyroku + " "+data_zakonczenia_wyroku+ " "+nazwa_depozytu + " "+ilosc_depozytowa);
+        return true;
     }
     catch(e){
-        return [];
+        return false;
     }
 }
