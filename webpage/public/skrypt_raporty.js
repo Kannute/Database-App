@@ -2,38 +2,30 @@
     const btnAllPrisoners = document.getElementById("btnAllPrisoners");
     btnAllPrisoners.addEventListener("click", async e=>{
         readAllPrisoners()
-        if(!result.success) 
-            alert("Failed");
+
     })
     /* Raport dożywotnich więźniów */
     const btnLifeSentencePrisonsers = document.getElementById("btnLifeSentencePrisonsers");
     btnLifeSentencePrisonsers.addEventListener("click", async e=>{
         readLifeSentencePrisoners()
-        if(!result.success) 
-            alert("Failed");
+      
     })
 
     /*Raport wszystkich pracowników*/
     const btnAllEmployees = document.getElementById("btnAllEmployees");
     btnAllEmployees.addEventListener("click", async e=>{
         readAllEmployees()
-        if(!result.success) 
-            alert("Failed");
     })
 
     /*Raport depozytu wiezniow*/
     const btnPrisonersDeposit = document.getElementById("btnPrisonersDeposit");
     btnPrisonersDeposit.addEventListener("click", async e=>{
         readPrisonersDeposit()
-        if(!result.success) 
-            alert("Failed");
     })
     /*Raport wszystkich wolnych cel */
     const btnShowCells = document.getElementById("btnShowCells");
     btnShowCells.addEventListener("click", async e=>{
     readAllCells();
-    if(!result.success) 
-        alert("Failed");
     })
 
 
