@@ -31,7 +31,6 @@
     /*Raport wszystkich wolnych cel */
     const btnShowCells = document.getElementById("btnShowCells");
     btnShowCells.addEventListener("click", async e=>{
-    console.log("It works here")
     readAllCells();
     if(!result.success) 
         alert("Failed");
@@ -92,7 +91,6 @@ async function readPrisonersDeposit(){
 
 async function readAllCells(){
     try{
-        console.log("It works inside too")
         const result = await fetch("http://localhost:8080/wszystkie_cele", {method:"GET"})
         const raport = await result.json();
 

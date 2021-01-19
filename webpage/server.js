@@ -49,7 +49,7 @@ app.get("/depozyt_wiezniow", async(req,res)=> {
 
 app.post("/wpis_wieznia", async (req, res) => {
     let result = {}
-    //console.log("We are here")
+    console.log("We are here2")
     try{
         const reqJson = req.body;
         result.success = await wpisWieznia(reqJson)
