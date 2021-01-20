@@ -142,3 +142,48 @@ END;
 
 CREATE TRIGGER wiezniaWpis AFTER INSERT ON wiezienie.wpis_wieznia 
 FOR EACH ROW EXECUTE PROCEDURE wiezienie.wpisWieznia();
+
+
+
+/*REATE TABLE wiezienie.wpis_pracownika(
+                imie VARCHAR NOT NULL,
+                nazwisko VARCHAR NOT NULL,
+                zawod VARCHAR NOT NULL,
+                nr_pokoju INTEGER NOT NULL,
+
+);*/
+
+/* WYZWALACZ DO WPISU PRACOWNIKA*/
+CREATE OR REPLACE FUNCTION wiezienie.zatrudnijPracownika() RETURNS TRIGGER AS'
+DECLARE
+    pracownik_id int;
+    pokoj_id int;
+    zawod_id int;
+BEGIN
+    INSERT INTO wiezienie.pracownik VALUES(DEFAULT, NEW."imie", NEW."nazwisko");
+
+    SELECT p.id_pracownika INTO pracownik_id FROM wiezienie.pracownik p WHERE p.imie = NEW."imie" AND p.nazwisko = NEW."nazwisko";
+    IF(pracownik_id = NULL) THEN
+        RETURN NULL;
+    END IF;
+
+    SELECT z.id_zawodu INTO zawod_id FROM wiezienie.zawod z WHERE z.nazwa = NEW."zawod";
+    IF(zawod_id = NULL) THEN
+        RETURN NULL;
+    END IF;
+
+    SELECT p.id_pokoju INTO pokoj_id FROM wiezienie.pokoj p WHERE p.nr_pokoju = NEW."nr_pokoju";
+    IF(pokoj_id = NULL) THEN
+        RETURN NULL;
+    END IF;
+
+    INSERT INTO wiezienie.pracownik_info VALUES(DEFAULT, zawod_id, pracownik_id, pokoj_id);
+
+    RETURN NEW;
+
+END;
+
+' LANGUAGE 'plpgsql';
+
+CREATE TRIGGER pracownikaWpis AFTER INSERT ON wiezienie.wpis_pracownika 
+FOR EACH ROW EXECUTE PROCEDURE wiezienie.zatrudnijPracownika();

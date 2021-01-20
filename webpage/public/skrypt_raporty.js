@@ -1,92 +1,163 @@
      /* Raport wszystkich więźniów */
-    const btnAllPrisoners = document.getElementById("btnAllPrisoners");
-    btnAllPrisoners.addEventListener("click", async e=>{
-        readAllPrisoners()
+    const btnWszyscyWiezniowie = document.getElementById("btnWszyscyWiezniowie");
+    btnWszyscyWiezniowie.addEventListener("click", async e=>{
+        wczytajWszystkichWiezniow()
 
     })
     /* Raport dożywotnich więźniów */
-    const btnLifeSentencePrisonsers = document.getElementById("btnLifeSentencePrisonsers");
-    btnLifeSentencePrisonsers.addEventListener("click", async e=>{
-        readLifeSentencePrisoners()
+    const btnDozywotniWiezniowie = document.getElementById("btnDozywotniWiezniowie");
+    btnDozywotniWiezniowie.addEventListener("click", async e=>{
+        wczytajDozywotnichWiezniow()
       
     })
 
     /*Raport wszystkich pracowników*/
-    const btnAllEmployees = document.getElementById("btnAllEmployees");
-    btnAllEmployees.addEventListener("click", async e=>{
-        readAllEmployees()
+    const btnPokazPracownikow = document.getElementById("btnPokazPracownikow");
+    btnPokazPracownikow.addEventListener("click", async e=>{
+        wczytajWszystkichPracownikow()
     })
 
     /*Raport depozytu wiezniow*/
-    const btnPrisonersDeposit = document.getElementById("btnPrisonersDeposit");
-    btnPrisonersDeposit.addEventListener("click", async e=>{
-        readPrisonersDeposit()
+    const btnDepozytWiezniow = document.getElementById("btnDepozytWiezniow");
+    btnDepozytWiezniow.addEventListener("click", async e=>{
+        wczytajDepozytWiezniow()
     })
     /*Raport wszystkich wolnych cel */
-    const btnShowCells = document.getElementById("btnShowCells");
-    btnShowCells.addEventListener("click", async e=>{
-    readAllCells();
+    const btnPokazCele = document.getElementById("btnPokazCele");
+    btnPokazCele.addEventListener("click", async e=>{
+        wczytajWszystkieCele();
     })
 
+    /* Wczytaj cele wraz z wiezniami */
+    const btnCeleWiezniow = document.getElementById("btnCeleWiezniow");
+    btnCeleWiezniow.addEventListener("click", async e=>{
+        wczytajCeleWiezniow();
+    })
 
-    //readAllPrisoners();
-    async function readAllPrisoners(){
+    /*Wczytaj wyroki wiezniow */
+    const btnWyrokiWiezniow = document.getElementById("btnWyrokiWiezniow");
+    btnWyrokiWiezniow.addEventListener("click", async e=>{
+        wczytajWyrokiWiezniow();
+    })
+    /*Wczytaj wszystkie pokoje*/
+    const btnWszystkiePokoje = document.getElementById("btnWszystkiePokoje");
+    btnWszystkiePokoje.addEventListener("click", async e=>{
+        wczytajWszystkiePokoje();
+    })
+
+    /*Wczytaj wszystkie pokoje zd depozytem*/
+    const btnDepozytPokoje = document.getElementById("btnDepozytPokoje");
+    btnDepozytPokoje.addEventListener("click", async e=>{
+        wczytajWszystkiePokojeDepozyt();
+    })
+
+    async function wczytajWszystkiePokojeDepozyt(){
+        try{
+            const result = await fetch("http://localhost:8080/wszystkie_pokoje_depozyt", {method:"GET"})
+            const raport = await result.json();
+
+            stworzTabele(raport);
+        }
+        catch(e){
+            console.log("Blad we wczytywaniu wszystkich pokoi z depozytem!");
+        }
+    }
+
+    async function wczytajWszystkiePokoje(){
+        try{
+            const result = await fetch("http://localhost:8080/wszystkie_pokoje", {method:"GET"})
+            const raport = await result.json();
+
+            stworzTabele(raport);
+        }
+        catch(e){
+            console.log("Blad we wczytywaniu wszystkich pokoi!");
+        }
+    }
+
+
+    async function wczytajWyrokiWiezniow(){
+        try{
+            const result = await fetch("http://localhost:8080/wyroki_wiezniow", {method:"GET"})
+            const raport = await result.json();
+
+            stworzTabele(raport);
+        }
+        catch(e){
+            console.log("Blad we wczytywaniu wyrokow wiezniow!");
+        }
+    }
+
+    async function wczytajCeleWiezniow(){
+        try{
+            const result = await fetch("http://localhost:8080/cele_wiezniow", {method:"GET"})
+            const raport = await result.json();
+
+            stworzTabele(raport);
+        }
+        catch(e){
+            console.log("Blad we wczytywaniu cel wiezniow!");
+        }
+    }
+
+
+    async function wczytajWszystkichWiezniow(){
         try{
             const result = await fetch("http://localhost:8080/wszyscy_wiezniowie", {method:"GET"})
             const raport = await result.json();
 
-            generateTable(raport);
+            stworzTabele(raport);
         }
         catch(e){
             console.log("Blad we wczytywaniu wszystkich wiezniow!");
         }
     }
 
-    //readLifeSentencePrisoners();
-    async function readLifeSentencePrisoners(){
+
+    async function wczytajDozywotnichWiezniow(){
         try{
             const result = await fetch("http://localhost:8080/dozywotni_wiezniowie", {method:"GET"})
             const raport = await result.json();
 
-            generateTable(raport);
+            stworzTabele(raport);
         }
         catch(e){
             console.log("Blad we wczytywaniu wszystkich wiezniow z dozywotnim wyrokiem!");
         }
     }
 
-    //readAllEmployees();
-async function readAllEmployees(){
+
+async function wczytajWszystkichPracownikow(){
         try{
             const result = await fetch("http://localhost:8080/wszyscy_pracownicy", {method:"GET"})
             const raport = await result.json();
 
-            generateTable(raport);
+            stworzTabele(raport);
         }
         catch(e){
             console.log("Blad we wczytywaniu pracownikow!");
         }
     }
 
-        //readAllEmployees();
-async function readPrisonersDeposit(){
+    
+async function wczytajDepozytWiezniow(){
         try{
             const result = await fetch("http://localhost:8080/depozyt_wiezniow", {method:"GET"})
             const raport = await result.json();
 
-            generateTable(raport);
+            stworzTabele(raport);
         }
         catch(e){
             console.log("Blad we wczytywaniu depozytu wiezniow!");
         }
     }
 
-async function readAllCells(){
+async function wczytajWszystkieCele(){
     try{
         const result = await fetch("http://localhost:8080/wszystkie_cele", {method:"GET"})
         const raport = await result.json();
 
-        generateTable(raport);
+        stworzTabele(raport);
     }
     catch(e){
         console.log("Blad we wczytywaniu cel!");
@@ -94,7 +165,7 @@ async function readAllCells(){
 }
 
 
-function generateTable(raport){
+function stworzTabele(raport){
     
     const tableDiv = document.getElementById("tableDiv");
     while(tableDiv.firstChild)

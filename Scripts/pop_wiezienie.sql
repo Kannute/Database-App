@@ -78,27 +78,27 @@ INSERT INTO wiezienie.zawod VALUES(DEFAULT, 'Personel sprzatajacy');
 
 
 /** POKOJE **/
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj naczelnika', 1);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj strazniczy', 1);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj strazniczy', 1);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Kuchnia', 1);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Kotłownia', 1);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Piwnica', 1);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj naczelnika', 2);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj strazniczy', 2);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj strazniczy', 2);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Kuchnia', 2);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Kotłownia', 2);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Piwnica', 2);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj naczelnika', 3);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj strazniczy', 3);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj strazniczy', 3);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj strazniczy', 3);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Kuchnia', 3);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Piwnica', 3);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj lekarski', 1);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj lekarski', 2);
-INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 'Pokoj lekarski', 3);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 10, 'Pokoj naczelnika', 1);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 11, 'Pokoj strazniczy', 1);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 12, 'Pokoj strazniczy', 1);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 13, 'Kuchnia', 1);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 14, 'Kotłownia', 1);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 15, 'Piwnica', 1);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 21, 'Pokoj naczelnika', 2);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 22, 'Pokoj strazniczy', 2);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 23, 'Pokoj strazniczy', 2);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 24, 'Kuchnia', 2);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 25, 'Kotłownia', 2);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 26, 'Piwnica', 2);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 31, 'Pokoj naczelnika', 3);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 32, 'Pokoj strazniczy', 3);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 33, 'Pokoj strazniczy', 3);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 34, 'Pokoj strazniczy', 3);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 35, 'Kuchnia', 3);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 36, 'Piwnica', 3);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 16, 'Pokoj lekarski', 1);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 27, 'Pokoj lekarski', 2);
+INSERT INTO wiezienie.pokoj VALUES(DEFAULT, 37,  'Pokoj lekarski', 3);
 
 /** PRZYDZIAL DEPOZYTOW**/
 INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt naczelnika', 1,10);

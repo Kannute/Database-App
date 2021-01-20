@@ -15,36 +15,63 @@ app.get("/", (req, res) => res.sendFile(`${__dirname}/index.html`))
 app.get("/index.html", (req, res) => res.sendFile(`${__dirname}/index.html`))
 app.get("/raporty.html", (req, res) => res.sendFile(`${__dirname}/raporty.html`))
 app.get("/wpisy.html", (req, res) => res.sendFile(`${__dirname}/wpisy.html`))
+app.get("/wpisPracownika.html", (req, res) => res.sendFile(`${__dirname}/wpisPracownika.html`))
 
 app.get("/wszyscy_wiezniowie", async(req,res)=> {
-    const rows = await readAllPrisoners();
+    const rows = await wczytajWszystkichWiezniow();
     res.setHeader("content-type", "application/json");
     res.send(JSON.stringify(rows))
 })
 
 app.get("/wszystkie_cele", async(req,res)=> {
-    const rows = await readAllCells();
+    const rows = await wczytajWszystkieCele();
     res.setHeader("content-type", "application/json");
     res.send(JSON.stringify(rows))
 })
 
 app.get("/dozywotni_wiezniowie", async(req,res)=> {
-    const rows = await readLifeSentencePrisoners();
+    const rows = await wczytajDozywotnichWiezniow();
     res.setHeader("content-type", "application/json");
     res.send(JSON.stringify(rows))
 })
 
 app.get("/wszyscy_pracownicy", async(req,res)=> {
-    const rows = await readAllEmployees();
+    const rows = await wczytajWszystkichPracownikow();
     res.setHeader("content-type", "application/json");
     res.send(JSON.stringify(rows))
 })
 
 app.get("/depozyt_wiezniow", async(req,res)=> {
-    const rows = await readPrisonersDeposit();
+    const rows = await wczytajDepozytWiezniow();
     res.setHeader("content-type", "application/json");
     res.send(JSON.stringify(rows))
 })
+
+app.get("/cele_wiezniow", async(req,res)=> {
+    const rows = await wczytajCeleWiezniow();
+    res.setHeader("content-type", "application/json");
+    res.send(JSON.stringify(rows))
+})
+
+app.get("/wyroki_wiezniow", async(req,res)=> {
+    const rows = await wczytajWyrokiWiezniow();
+    res.setHeader("content-type", "application/json");
+    res.send(JSON.stringify(rows))
+})
+
+app.get("/wszystkie_pokoje", async(req,res)=> {
+    const rows = await wczytajWszystkiePokoje();
+    res.setHeader("content-type", "application/json");
+    res.send(JSON.stringify(rows))
+})
+
+app.get("/wszystkie_pokoje_depozyt", async(req,res)=> {
+    const rows = await wczytajWszystkiePokojeDepozyt();
+    res.setHeader("content-type", "application/json");
+    res.send(JSON.stringify(rows))
+})
+
+
 
 
 app.post("/wpis_wieznia", async (req, res) => {
@@ -57,11 +84,19 @@ app.post("/wpis_wieznia", async (req, res) => {
         console.log("Zlapano wyjatek w app.post "+e)
         result.success=false;
     }
-    /*finally{
-        res.setHeader("content-type", "application/json")
-        res.send(JSON.stringify(result))
-    }*/
    
+})
+
+app.post("/wpis_pracownika", async (req, res) =>{
+    let result = {}
+    try{
+        const reqJson = req.body;
+        result.success = await wpisPracownika(reqJson)
+    }
+    catch(e){
+        console.log("Zlapano wyjatek w app.post pracownikia " + e)
+        result.success = false;
+    }
 })
 
 app.listen(8080, () => console.log("Web server is listening.. on port 8080"))
@@ -81,7 +116,7 @@ async function connect(){
     }
 }
 
-async function readAllPrisoners(){
+async function wczytajWszystkichWiezniow(){
     try{
         const results = await pool.query("select * from wszyscy_wiezniowie;");
         return results.rows;
@@ -91,7 +126,7 @@ async function readAllPrisoners(){
     }
 }
 
-async function readLifeSentencePrisoners(){
+async function wczytajDozywotnichWiezniow(){
     try{
         const results = await pool.query("select * from dozywotni_wiezniowie;");
         return results.rows;
@@ -101,7 +136,7 @@ async function readLifeSentencePrisoners(){
     }
 }
 
-async function readAllEmployees(){
+async function wczytajWszystkichPracownikow(){
     try{
         const results = await pool.query("select * from wszyscy_pracownicy;");
         //console.table(JSON.stringify(results.rows));
@@ -113,7 +148,7 @@ async function readAllEmployees(){
 }
 
 
-async function readPrisonersDeposit(){
+async function wczytajDepozytWiezniow(){
     try{
         const results = await pool.query("select * from depozyt_wiezniow;");
         //console.table(JSON.stringify(results.rows));
@@ -124,7 +159,7 @@ async function readPrisonersDeposit(){
     }
 }
 
-async function readAllCells(){
+async function wczytajWszystkieCele(){
     try{
         const results = await pool.query("select * from wszystkie_dostepne_cele;");
         //console.table(JSON.stringify(results.rows));
@@ -135,16 +170,61 @@ async function readAllCells(){
     }
 }
 
+async function wczytajCeleWiezniow(){
+    try{
+        const results = await pool.query("select * from wiezniowie_cele;");
+        //console.table(JSON.stringify(results.rows));
+        return results.rows;
+    }
+    catch(e){
+        return [];
+    }
+}
+
+async function wczytajWyrokiWiezniow(){
+    try{
+        const results = await pool.query("select * from wiezniowie_wyrok;");
+        //console.table(JSON.stringify(results.rows));
+        return results.rows;
+    }
+    catch(e){
+        return [];
+    }
+}
+
+async function wczytajWszystkiePokoje(){
+    try{
+        const results = await pool.query("select * from wszystkie_pokoje;");
+        //console.table(JSON.stringify(results.rows));
+        return results.rows;
+    }
+    catch(e){
+        return [];
+    }
+}
+
+async function wczytajWszystkiePokojeDepozyt(){
+    try{
+        const results = await pool.query("select * from wszystkie_pokoje_depozyt;");
+        //console.table(JSON.stringify(results.rows));
+        return results.rows;
+    }
+    catch(e){
+        return [];
+    }
+}
+
+
+
 async function wpisWieznia(dane){
     try{
-        /*TODO pomyslec nad triggerem - jak sprawdzic czy query */
-        const imie = dane.fname;
-        const nazwisko= dane.lname;
+        const imie = dane.imie;
+        const nazwisko= dane.nazwisko;
         const pesel = dane.peseltext;
-        const nr_celi = dane.cellno;
+        const nr_celi = dane.cela;
         const nr_segmentu = dane.segmentno;
         const nazwa_wyroku =  dane.wyroktext;
-        const data_zakonczenia_wyroku = dane.enddate;
+        const data_zakonczenia_wyroku = dane.koniecwyroku;
         const nazwa_depozytu = dane.depozyttext;
         const ilosc_depozytowa =  dane.depozytilosc;
         console.log("insert into wiezienie.wpis_wieznia values( '"+ imie +"', '"+nazwisko+ "', "+Number(pesel)+","+parseInt(nr_celi,10)+","+parseInt(nr_segmentu,10)+",'"+nazwa_wyroku+"','"+data_zakonczenia_wyroku+"','"+nazwa_depozytu+"',"+parseInt(ilosc_depozytowa,10)+")")  
@@ -153,7 +233,24 @@ async function wpisWieznia(dane){
         return true;
     }
     catch(e){
-        console.log("Złapano wyjątek przy wpisie" + e)
+        console.log("Złapano wyjątek przy wpisie wieznia" + e)
         return false;
     }
+}
+
+async function wpisPracownika(dane){
+    try{
+        const imie = dane.imie;
+        const nazwisko= dane.nazwisko;
+        const nr_pokoju = dane.pokoj;
+        const zawod = dane.zawod;
+        console.log("insert into wiezienie.wpis_pracownika values('"+ imie +"', '" + nazwisko + "', '" + zawod +"' , ' " + parseInt(nr_pokoju,10)+ "');")
+        const queryResult = await pool.query("insert into wiezienie.wpis_pracownika values('"+ imie +"', '" + nazwisko + "', '" + zawod +"' , ' " + parseInt(nr_pokoju,10)+ "');")
+        console.log(queryResult)
+        return true;
+    }
+    catch(e){
+        console.log("Zlapano wyjatek przy wpisie pracownika" + e)
+        return false;
+    }   
 }

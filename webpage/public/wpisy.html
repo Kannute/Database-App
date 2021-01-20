@@ -14,18 +14,18 @@
     <div id="formularzDiv">
         <p id="welcomeP">Wypelnij formularz wpisu wieznia.<br> <br>
             <form id="formularz">
-                <label for="fname">Imie:</label><br>
-                <input type="text" id="fname" name="fname"><br>
+                <label for="imie">Imie:</label><br>
+                <input type="text" id="imie" name="imie"><br>
 
-                <label for="lname">Nazwisko</label><br>
-                <input type="text" id="lname" name="lname"><br>
+                <label for="nazwisko">Nazwisko</label><br>
+                <input type="text" id="nazwisko" name="nazwisko"><br>
 
                 
                 <label for="peseltext">PESEL</label><br>
                 <input type="text" id="peseltext" name="peseltext"><br>
 
-                <label for="cellno">Numer celi</label> <br>
-                <input type="text" id="cellno" name="cellno"> <br>
+                <label for="cela">Numer celi</label> <br>
+                <input type="text" id="cela" name="cela"> <br>
                 
                 <label for="segmentno">Numer segmentu</label> <br>
                 <input type="text" id="segmentno" name="segmentno"> <br>
@@ -37,8 +37,8 @@
                 <label for="wyroktext">Wyrok</label> <br>
                 <input type="text" id="wyroktext" name="wyroktext"> <br>
 
-                <label for="enddate">Data zakonczenia wyroku</label> <br>
-                <input type="date" id="enddate" name="enddate"> <br>
+                <label for="koniecwyroku">Data zakonczenia wyroku</label> <br>
+                <input type="date" id="koniecwyroku" name="koniecwyroku"> <br>
 
                 <label for="depozyttext">Depozyt wieznia</label> <br>
                 <input type="text" id="depozyttext" name="depozyttext"> <br>
@@ -64,13 +64,13 @@
     const btnSubmit = document.getElementById("btnSubmit")
     btnSubmit.addEventListener("click", async e=> {
                     const jsonRequest = {}
-                    jsonRequest.fname = document.getElementById("fname").value
-                    jsonRequest.lname = document.getElementById("lname").value
+                    jsonRequest.imie = document.getElementById("imie").value
+                    jsonRequest.nazwisko = document.getElementById("nazwisko").value
                     jsonRequest.peseltext = document.getElementById("peseltext").value
-                    jsonRequest.cellno = document.getElementById("cellno").value
+                    jsonRequest.cela = document.getElementById("cela").value
                     jsonRequest.segmentno = document.getElementById("segmentno").value
                     jsonRequest.wyroktext = document.getElementById("wyroktext").value
-                    jsonRequest.enddate = document.getElementById("enddate").value
+                    jsonRequest.koniecwyroku = document.getElementById("koniecwyroku").value
                     jsonRequest.depozyttext = document.getElementById("depozyttext").value
                     jsonRequest.depozytilosc = document.getElementById("depozytilosc").value
                     try{

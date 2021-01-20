@@ -120,6 +120,7 @@ CREATE SEQUENCE wiezienie.pokoj_id_pokoju_seq;
 
 CREATE TABLE wiezienie.pokoj(
                 id_pokoju INTEGER NOT NULL DEFAULT nextval('wiezienie.pokoj_id_pokoju_seq'),
+                nr_pokoju INTEGER NOT NULL,
                 nazwa_pokoju VARCHAR NOT NULL,
                 id_segmentu INTEGER NOT NULL,
                 CONSTRAINT pokoj_pk PRIMARY KEY (id_pokoju)
@@ -166,6 +167,15 @@ CREATE TABLE wiezienie.wpis_wieznia(
                 data_zakonczenia_wyroku DATE,
                 nazwa_depozytu VARCHAR NOT NULL,
                 ilosc_depozytowa INTEGER NOT NULL
+);
+
+/*TABLICA POMOCNICZA DO ZATRUDNIENIA PRACOWNIKA*/
+CREATE TABLE wiezienie.wpis_pracownika(
+                imie VARCHAR NOT NULL,
+                nazwisko VARCHAR NOT NULL,
+                zawod VARCHAR NOT NULL,
+                nr_pokoju INTEGER NOT NULL
+
 );
 
 /***** NADAWANIE KLUCZY OBCYCH *****/
