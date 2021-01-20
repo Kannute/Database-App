@@ -71,6 +71,11 @@ app.get("/wszystkie_pokoje_depozyt", async(req,res)=> {
     res.send(JSON.stringify(rows))
 })
 
+app.get("/depozyt_wiezniow_pokoje", async(req,res)=> {
+    const rows = await wczytajDepozytWiezienPokoj();
+    res.setHeader("content-type", "application/json");
+    res.send(JSON.stringify(rows))
+})
 
 
 
@@ -206,6 +211,17 @@ async function wczytajWszystkiePokoje(){
 async function wczytajWszystkiePokojeDepozyt(){
     try{
         const results = await pool.query("select * from wszystkie_pokoje_depozyt;");
+        //console.table(JSON.stringify(results.rows));
+        return results.rows;
+    }
+    catch(e){
+        return [];
+    }
+}
+
+async function wczytajDepozytWiezienPokoj(){
+    try{
+        const results = await pool.query("select * from wiezniowie_depozyt_pokoj;");
         //console.table(JSON.stringify(results.rows));
         return results.rows;
     }

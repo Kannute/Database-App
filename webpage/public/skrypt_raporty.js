@@ -51,6 +51,26 @@
         wczytajWszystkiePokojeDepozyt();
     })
 
+    
+    /*Wczytaj depozyt wiezniow z pokojami gdzie sie znajduje*/
+    const btnDepozytWiezienPokoj = document.getElementById("btnDepozytWiezienPokoj");
+    btnDepozytWiezienPokoj.addEventListener("click", async e=>{
+        wczytajDepozytWiezienPokoj();
+    })
+
+    async function wczytajDepozytWiezienPokoj(){
+        try{
+            const result = await fetch("http://localhost:8080/depozyt_wiezniow_pokoje", {method:"GET"})
+            const raport = await result.json();
+
+            stworzTabele(raport);
+        }
+        catch(e){
+            console.log("Blad we wczytywaniu wszystkich pokoi z depozytem wiezniow!");
+        }
+    }
+
+
     async function wczytajWszystkiePokojeDepozyt(){
         try{
             const result = await fetch("http://localhost:8080/wszystkie_pokoje_depozyt", {method:"GET"})
