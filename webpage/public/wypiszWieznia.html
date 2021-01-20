@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wpis wieznia</title>
+    <link rel="stylesheet" href="./style/styles.css">
+</head>
+<body>
+    <h2></h2>
+    <div id="tableDiv">
+
+    </div> 
+    <div id="formularzDiv">
+        <p id="welcomeP">Wypelnij formularz wpisu wieznia.<br> <br>
+            <form id="formularz">
+                <label for="imie">Imie:</label><br>
+                <input type="text" id="imie" name="imie"><br>
+
+                <label for="nazwisko">Nazwisko</label><br>
+                <input type="text" id="nazwisko" name="nazwisko"><br>
+
+                
+                <label for="cela">Numer celi</label> <br>
+                <input type="text" id="cela" name="cela"> <br>
+                
+                <br>
+                <button type="submit" id="btnSubmit" > WyPIS </button> <br>
+
+                
+            </form> 
+
+            <a href="index.html">POWRÓT</a>
+            
+            
+        </p>
+    </div>
+</body>
+<script>
+    const btnSubmit = document.getElementById("btnSubmit")
+    btnSubmit.addEventListener("click", async e=> {
+                    const jsonRequest = {}
+                    jsonRequest.imie = document.getElementById("imie").value
+                    jsonRequest.nazwisko = document.getElementById("nazwisko").value
+                    jsonRequest.cela = document.getElementById("cela").value
+    
+                    try{
+                        await fetch("http://localhost:8080/wypisz_wieznia", {method: "POST", 
+                        headers: {"content-type": "application/json"}, body: JSON.stringify(jsonRequest) })
+                    }
+                    catch(e){
+                        console.log("Złapano wyjątek: "+ e)
+                    }
+                
+
+     })
+</script>
+</html>

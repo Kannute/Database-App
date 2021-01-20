@@ -104,6 +104,20 @@ app.post("/wpis_pracownika", async (req, res) =>{
     }
 })
 
+
+
+app.delete("/wypisz_wieznia", async (req, res)=>{
+    let result = {}
+    try{
+        const reqJson = req.body;
+        result.success = await wypiszWieznia(reqJson)
+    }
+    catch(e){
+        console.log("Zlapano wyjatek w app.delete wieznia " + e)
+        result.success = false;
+    }
+})
+
 app.listen(8080, () => console.log("Web server is listening.. on port 8080"))
 start()
 

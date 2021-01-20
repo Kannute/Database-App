@@ -145,14 +145,6 @@ FOR EACH ROW EXECUTE PROCEDURE wiezienie.wpisWieznia();
 
 
 
-/*REATE TABLE wiezienie.wpis_pracownika(
-                imie VARCHAR NOT NULL,
-                nazwisko VARCHAR NOT NULL,
-                zawod VARCHAR NOT NULL,
-                nr_pokoju INTEGER NOT NULL,
-
-);*/
-
 /* WYZWALACZ DO WPISU PRACOWNIKA*/
 CREATE OR REPLACE FUNCTION wiezienie.zatrudnijPracownika() RETURNS TRIGGER AS'
 DECLARE
@@ -187,3 +179,20 @@ END;
 
 CREATE TRIGGER pracownikaWpis AFTER INSERT ON wiezienie.wpis_pracownika 
 FOR EACH ROW EXECUTE PROCEDURE wiezienie.zatrudnijPracownika();
+
+
+/*WYZWALACZ DO USUNIECIA WIEZNIA Z WIEZIENIA*/
+/*TODO!!!!!*/
+CREATE OR REPLACE FUNCTION wypisWieznia() RETURNS TRIGGER AS'
+DECLARE
+    zasob_id int ;
+    wiezien_id int ;
+    depozyt_id int ;
+    cela_id int ;
+    wyrok_id int ;
+BEGIN
+
+
+END;
+
+' LANGUAGE 'plpgsql'
