@@ -284,3 +284,13 @@ async function wpisPracownika(dane){
         return false;
     }   
 }
+
+
+async function wypiszWieznia(dane){
+    try{
+
+    }
+    catch(e){
+        
+    }
+}
