@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wpis wieznia</title>
     <link rel="stylesheet" href="./style/styles.css">
-    <script src="skrypt_wpisy.js"></script>
 </head>
 <body>
     <h2></h2>
@@ -74,18 +73,12 @@
                     jsonRequest.enddate = document.getElementById("enddate").value
                     jsonRequest.depozyttext = document.getElementById("depozyttext").value
                     jsonRequest.depozytilosc = document.getElementById("depozytilosc").value
-                    //console.log(JSON.stringify(jsonRequest))
                     try{
-                        let result = await fetch("http://localhost:8080/wpis_wieznia", {method: "POST", 
+                        await fetch("http://localhost:8080/wpis_wieznia", {method: "POST", 
                         headers: {"content-type": "application/json"}, body: JSON.stringify(jsonRequest) })
-                        if(result=false)
-                            console.log("COs nie gra")
-                        else
-                            console.log("jednak ok")
-                        
                     }
                     catch(e){
-                        console.log("Wpisano rekord do bazy i przy okazji złapano wyjątek(???)")
+                        console.log("Złapano wyjątek: "+ e)
                     }
                 
 

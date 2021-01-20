@@ -95,9 +95,24 @@ BEGIN
     INSERT INTO wiezienie.zasoby VALUES (DEFAULT, NEW."nazwa_depozytu", NEW."ilosc_depozytowa");
     
     SELECT z.id_zasobu INTO zasob_id FROM wiezienie.zasoby z WHERE z.nazwa = NEW."nazwa_depozytu" and z.ilosc = NEW."ilosc_depozytowa";
+    IF(zasob_id = NULL) THEN
+        RETURN NULL;
+    END IF;
+
     SELECT w.id_wieznia INTO wiezien_id FROM wiezienie.wiezien w WHERE w.pesel = NEW."pesel";
+    IF(wiezien_id = NULL) THEN
+        RETURN NULL;
+    END IF;
+
     SELECT c.id_celi INTO cela_id FROM wiezienie.cela c WHERE c.nr_celi = NEW."nr_celi";
+    IF(cela_id = NULL) THEN
+        RETURN NULL;
+    END IF;
+
     SELECT w.id_wyroku INTO wyrok_id FROM wiezienie.wyrok w WHERE w.nazwa_wyroku = NEW."nazwa_wyroku" and w.data_zakonczenia = NEW."data_zakonczenia_wyroku";
+    IF(wyrok_id = NULL) THEN
+        RETURN NULL;
+    END IF;    
 
     IF(NEW."nr_segmentu" = 1) THEN    
         INSERT INTO wiezienie.depozyt VALUES (DEFAULT, ''Depozyt wieznia'', 2, zasob_id);
@@ -114,11 +129,14 @@ BEGIN
     END IF;
 
     SELECT d.id_depozytu INTO depozyt_id FROM wiezienie.depozyt d WHERE d.id_zasobu = zasob_id;
+    IF(depozyt_id = NULL) THEN
+        RETURN NULL;
+    END IF;    
+
 
     INSERT INTO wiezienie."wiezien_info" VALUES (DEFAULT, wiezien_id, cela_id, depozyt_id,  wyrok_id);
 
-    DELETE FROM wiezienie.wpis_wieznia wp WHERE wp.imie = NEW."imie";
-    RETURN NULL;
+    RETURN NEW;
 END;
 ' LANGUAGE 'plpgsql';
 

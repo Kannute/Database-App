@@ -54,12 +54,13 @@ app.post("/wpis_wieznia", async (req, res) => {
         result.success = await wpisWieznia(reqJson)
     }
     catch(e){
+        console.log("Zlapano wyjatek w app.post "+e)
         result.success=false;
     }
-    finally{
+    /*finally{
         res.setHeader("content-type", "application/json")
         res.send(JSON.stringify(result))
-    }
+    }*/
    
 })
 
@@ -136,7 +137,7 @@ async function readAllCells(){
 
 async function wpisWieznia(dane){
     try{
-        /*TODO pomyslec nad triggerem - jak sprawdzic czy query bylo poprawne */
+        /*TODO pomyslec nad triggerem - jak sprawdzic czy query */
         const imie = dane.fname;
         const nazwisko= dane.lname;
         const pesel = dane.peseltext;
@@ -146,13 +147,13 @@ async function wpisWieznia(dane){
         const data_zakonczenia_wyroku = dane.enddate;
         const nazwa_depozytu = dane.depozyttext;
         const ilosc_depozytowa =  dane.depozytilosc;
-        //console.log("insert into wiezienie.wpis_wieznia values( '"+ imie +"', '"+nazwisko+ "', "+Number(pesel)+","+parseInt(nr_celi,10)+","+parseInt(nr_segmentu,10)+",'"+nazwa_wyroku+"','"+data_zakonczenia_wyroku+"','"+nazwa_depozytu+"',"+parseInt(ilosc_depozytowa,10)+")")  
+        console.log("insert into wiezienie.wpis_wieznia values( '"+ imie +"', '"+nazwisko+ "', "+Number(pesel)+","+parseInt(nr_celi,10)+","+parseInt(nr_segmentu,10)+",'"+nazwa_wyroku+"','"+data_zakonczenia_wyroku+"','"+nazwa_depozytu+"',"+parseInt(ilosc_depozytowa,10)+")")  
         const queryResult = await pool.query("insert into wiezienie.wpis_wieznia values( '"+ imie +"', '"+nazwisko+ "', "+Number(pesel)+","+parseInt(nr_celi,10)+","+parseInt(nr_segmentu,10)+",'"+nazwa_wyroku+"','"+data_zakonczenia_wyroku+"','"+nazwa_depozytu+"',"+parseInt(ilosc_depozytowa,10)+")")
         console.log(queryResult)
         return true;
     }
     catch(e){
-        console.log("Złapano wyjątek przy wpisie")
+        console.log("Złapano wyjątek przy wpisie" + e)
         return false;
     }
 }
