@@ -1,26 +1,3 @@
-/** SPRAWDZANIE CZY ZASOB JUZ ISTNIEJE**/
-
-CREATE OR REPLACE FUNCTION wiezienie.sprawdzZasoby() RETURNS TRIGGER AS'
-DECLARE 
-    zasob record;
-BEGIN
-    IF(TG_OP= ''UPDATE'') THEN
-        RETURN NEW;
-    ELSIF(TG_OP=''INSERT'') THEN
-        SELECT * INTO zasob FROM wiezienie.zasoby WHERE nazwa = new.nazwa;
-        IF NOT FOUND THEN
-             RETURN NEW;
-        ELSE
-            RAISE NOTICE ''Taki zasob juz istnieje, zwieksz ilosc zasobu za pomoca UPDATE'';
-            RETURN NULL;
-        END IF;
-    END IF;
-END;
-' LANGUAGE 'plpgsql';
-
-CREATE TRIGGER zasobySprawdz BEFORE INSERT OR UPDATE ON wiezienie.zasoby
-FOR EACH ROW EXECUTE PROCEDURE wiezienie.sprawdzZasoby();
-
 /** SPRAWDZANIE DOSTEPNOSCI MIEJSCA W CELI**/
 CREATE OR REPLACE  FUNCTION wiezienie.dostepnoscCeli() RETURNS TRIGGER AS'
 DECLARE
@@ -44,18 +21,25 @@ CREATE OR REPLACE  FUNCTION wiezienie.zmianaIlosciMiejscCeli() RETURNS TRIGGER A
 DECLARE
     cela_record record;
 BEGIN
-    SELECT * into cela_record FROM wiezienie.cela WHERE id_celi = new.id_celi;
-    IF(cela_record.ilosc_miejsc = 0) THEN
-        RAISE NOTICE ''CELA PELNA!!!'';
-        RETURN NULL;
+    IF(TG_OP = ''INSERT'') THEN
+        SELECT * into cela_record FROM wiezienie.cela WHERE id_celi = new.id_celi;
+        IF(cela_record.ilosc_miejsc = 0) THEN
+            RAISE NOTICE ''CELA PELNA!!!'';
+            RETURN NULL;
+        ELSE
+            UPDATE wiezienie.cela SET ilosc_miejsc = (ilosc_miejsc - 1) WHERE id_celi = cela_record.id_celi;
+            RETURN NEW;
+        END IF;
+
     ELSE
-        UPDATE wiezienie.cela SET ilosc_miejsc = (ilosc_miejsc - 1) WHERE id_celi = cela_record.id_celi;
-        RETURN NEW;
+        SELECT * into cela_record FROM wiezienie.cela WHERE id_celi = old.id_celi;
+        UPDATE wiezienie.cela SET ilosc_miejsc = (ilosc_miejsc + 1) WHERE id_celi = cela_record.id_celi;
+        RETURN OLD;
     END IF;
 END;
 ' LANGUAGE 'plpgsql';
 
-CREATE TRIGGER zmianaMiejscCeli AFTER INSERT OR UPDATE on wiezienie.wiezien_info
+CREATE TRIGGER zmianaMiejscCeli AFTER INSERT OR UPDATE OR DELETE on wiezienie.wiezien_info
 FOR EACH ROW EXECUTE PROCEDURE wiezienie.zmianaIlosciMiejscCeli();
 
 
@@ -180,19 +164,7 @@ END;
 CREATE TRIGGER pracownikaWpis AFTER INSERT ON wiezienie.wpis_pracownika 
 FOR EACH ROW EXECUTE PROCEDURE wiezienie.zatrudnijPracownika();
 
+/*WYZWALACZ DO PRZENIESIENIA WIEZNIA DO NOWEJ CELI*/
+CREATE OR REPLACE FUNCTION wiezienie.przeniesienieWieznia() RETURNS TRIGGER AS '
 
-/*WYZWALACZ DO USUNIECIA WIEZNIA Z WIEZIENIA*/
-/*TODO!!!!!*/
-CREATE OR REPLACE FUNCTION wypisWieznia() RETURNS TRIGGER AS'
-DECLARE
-    zasob_id int ;
-    wiezien_id int ;
-    depozyt_id int ;
-    cela_id int ;
-    wyrok_id int ;
-BEGIN
-
-
-END;
-
-' LANGUAGE 'plpgsql'
+' LANGUAGE 'plpgsql';

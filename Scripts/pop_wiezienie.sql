@@ -183,6 +183,12 @@ INSERT INTO wiezienie.pracownik VALUES(DEFAULT, 'Alutka', 'Lutowicz');
 INSERT INTO wiezienie.pracownik_info VALUES(DEFAULT, 6, 24, 11);
 
 /** WIEZNIOWIE **/
+INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Tomasz', 'Karolak', '88051032171');
+INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Rozboj', '2021-01-12', '2021-12-31');
+INSERT INTO wiezienie.zasoby VALUES(DEFAULT, 'Zegarek', 1);
+INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt wieznia', 2, 11);
+INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, 1, 1, 16,1);
+
 INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Hans', 'Landa', '20050225312');
 INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Morderstwo', '2008-03-22', null);
 INSERT INTO wiezienie.zasoby VALUES(DEFAULT, 'Scyzoryk', 1);

@@ -12,7 +12,7 @@
 
     </div> 
     <div id="formularzDiv">
-        <p id="welcomeP">Wypelnij formularz aby zatrudnic pracownika.<br> <br>
+        <p id="welcomeP">Wypelnij formularz przeniesienia wieznia.<br> <br>
             <form id="formularz">
                 <label for="imie">Imie:</label><br>
                 <input type="text" id="imie" name="imie"><br>
@@ -20,19 +20,12 @@
                 <label for="nazwisko">Nazwisko</label><br>
                 <input type="text" id="nazwisko" name="nazwisko"><br>
 
-                <label for="pokoj">Numer pokoju</label> <br>
-                <input type="text" id="pokoj" name="pokoj"> <br>
-
-                <label for="zawod">Wybierz zawod:</label>
-                <select id="zawod" name="zawodlist" form="zawodlist">
-                    <option value="Straznik">Straznik</option>
-                    <option value="Lekarz">Lekarz</option>
-                    <option value="Personel pielegniarski">Personel pielegniarski</option>
-                    <option value="Personel gastronomiczny">Personel gastronomiczny</option>
-                    <option value="Personel sprzatajacy">Personel Sprzatajacy</option>
-                </select>
+                
+                <label for="cela">Numer nowej celi</label> <br>
+                <input type="text" id="cela" name="cela"> <br>
+                
                 <br>
-                <button type="submit" id="btnSubmit" > WPIS </button> <br>
+                <button type="submit" id="btnSubmit" > WyPIS </button> <br>
 
                 
             </form> 
@@ -49,14 +42,14 @@
                     const jsonRequest = {}
                     jsonRequest.imie = document.getElementById("imie").value
                     jsonRequest.nazwisko = document.getElementById("nazwisko").value
-                    jsonRequest.pokoj = document.getElementById("pokoj").value
-                    jsonRequest.zawod = document.getElementById("zawod").value
+                    jsonRequest.cela = document.getElementById("cela").value
+    
                     try{
-                        await fetch("http://localhost:8080/wpis_pracownika", {method: "POST", 
+                        await fetch("http://localhost:8080/przenies_wieznia", {method: "POST", 
                         headers: {"content-type": "application/json"}, body: JSON.stringify(jsonRequest) })
                     }
                     catch(e){
-                        console.log("Złapano wyjątek: "+ e)
+                        console.log("Złapano wyjątek i przeniesiono więźnia: "+ e)
                     }
                 
 

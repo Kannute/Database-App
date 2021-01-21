@@ -104,6 +104,19 @@ app.post("/wpis_pracownika", async (req, res) =>{
     }
 })
 
+app.post("/przenies_wieznia", async (req, res) =>{
+    let result = {}
+    try{
+        const reqJson = req.body;
+        result.success = await przeniesWieznia(reqJson)
+    }
+    catch(e){
+        console.log("Zlapano wyjatek w app.post przeniesienia wieznia " + e)
+        result.success = false;
+    }
+})
+
+
 
 
 app.delete("/wypisz_wieznia", async (req, res)=>{
@@ -274,9 +287,9 @@ async function wpisPracownika(dane){
         const nazwisko= dane.nazwisko;
         const nr_pokoju = dane.pokoj;
         const zawod = dane.zawod;
-        console.log("insert into wiezienie.wpis_pracownika values('"+ imie +"', '" + nazwisko + "', '" + zawod +"' , ' " + parseInt(nr_pokoju,10)+ "');")
+        //console.log("insert into wiezienie.wpis_pracownika values('"+ imie +"', '" + nazwisko + "', '" + zawod +"' , ' " + parseInt(nr_pokoju,10)+ "');")
         const queryResult = await pool.query("insert into wiezienie.wpis_pracownika values('"+ imie +"', '" + nazwisko + "', '" + zawod +"' , ' " + parseInt(nr_pokoju,10)+ "');")
-        console.log(queryResult)
+        //console.log(queryResult)
         return true;
     }
     catch(e){
@@ -288,9 +301,24 @@ async function wpisPracownika(dane){
 
 async function wypiszWieznia(dane){
     try{
-
+        await pool.query("delete from wiezienie.wiezien w where imie = '"+dane.imie+"' and nazwisko = '"+dane.nazwisko+"' ;") 
+        return true;
     }
     catch(e){
-        
+        console.log("Złapano wyjątek podczas wpisu wieznia "+ e)
+        return false
+    }
+}
+
+async function przeniesWieznia(dane){
+    try{
+        const imie = dane.imie;
+        const nazwisko = dane.nazwisko;
+        const nr_noweCeli = dane.cela;
+        console.log("UPDATE wiezienie.wpis_wieznia ww SET wi.nr_celi = "+ parseInt(nr_noweCeli,10) + " WHERE ww.imie = '"+ imie +"' AND ww.nazwisko= '"+ nazwisko+"';")
+    }
+    catch(e){
+        console.log("Złapano wyjątek podczas przenoszenia więźnia: "+ e)
+        return false
     }
 }

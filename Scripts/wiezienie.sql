@@ -185,28 +185,28 @@ CREATE TABLE wiezienie.wpis_pracownika(
 ALTER TABLE wiezienie.wiezien_info ADD CONSTRAINT wiezien_wiezien_info_fk
 FOREIGN KEY (id_wieznia)
 REFERENCES wiezienie.wiezien (id_wieznia)
-ON DELETE NO ACTION
+ON DELETE CASCADE
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE wiezienie.wiezien_info ADD CONSTRAINT cela_wiezien_info_fk
 FOREIGN KEY (id_celi)
 REFERENCES wiezienie.cela (id_celi)
-ON DELETE NO ACTION
+ON DELETE  CASCADE
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE wiezienie.wiezien_info ADD CONSTRAINT depozyt_wiezien_info_fk
 FOREIGN KEY (id_depozytu)
 REFERENCES wiezienie.depozyt (id_depozytu)
-ON DELETE NO ACTION
+ON DELETE CASCADE
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE wiezienie.wiezien_info ADD CONSTRAINT wyrok_wiezien_info_fk
 FOREIGN KEY (id_wyroku)
 REFERENCES wiezienie.wyrok (id_wyroku)
-ON DELETE NO ACTION
+ON DELETE CASCADE
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
@@ -216,21 +216,21 @@ NOT DEFERRABLE;
 ALTER TABLE wiezienie.pracownik_info ADD CONSTRAINT pracownik_pracownik_info_fk
 FOREIGN KEY (id_pracownika)
 REFERENCES wiezienie.pracownik (id_pracownika)
-ON DELETE NO ACTION
+ON DELETE CASCADE
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE wiezienie.pracownik_info ADD CONSTRAINT zawod_pracownik_info_fk
 FOREIGN KEY (id_zawodu)
 REFERENCES wiezienie.zawod (id_zawodu)
-ON DELETE NO ACTION
+ON DELETE CASCADE
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE wiezienie.pracownik_info ADD CONSTRAINT pokoj_pracownik_info_fk
 FOREIGN KEY (id_pokoju)
 REFERENCES wiezienie.pokoj (id_pokoju)
-ON DELETE NO ACTION
+ON DELETE CASCADE
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 

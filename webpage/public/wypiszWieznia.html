@@ -12,7 +12,7 @@
 
     </div> 
     <div id="formularzDiv">
-        <p id="welcomeP">Wypelnij formularz wpisu wieznia.<br> <br>
+        <p id="welcomeP">Wypelnij formularz wypisu wieznia.<br> <br>
             <form id="formularz">
                 <label for="imie">Imie:</label><br>
                 <input type="text" id="imie" name="imie"><br>
@@ -45,11 +45,11 @@
                     jsonRequest.cela = document.getElementById("cela").value
     
                     try{
-                        await fetch("http://localhost:8080/wypisz_wieznia", {method: "POST", 
+                        await fetch("http://localhost:8080/wypisz_wieznia", {method: "DELETE", 
                         headers: {"content-type": "application/json"}, body: JSON.stringify(jsonRequest) })
                     }
                     catch(e){
-                        console.log("Złapano wyjątek: "+ e)
+                        console.log("Złapano wyjątek i usunięto więźnia: "+ e)
                     }
                 
 
