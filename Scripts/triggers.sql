@@ -166,5 +166,26 @@ FOR EACH ROW EXECUTE PROCEDURE wiezienie.zatrudnijPracownika();
 
 /*WYZWALACZ DO PRZENIESIENIA WIEZNIA DO NOWEJ CELI*/
 CREATE OR REPLACE FUNCTION wiezienie.przeniesienieWieznia() RETURNS TRIGGER AS '
+    DECLARE
+        cela_id int;
+        wiezien_id int;
+    BEGIN
+        SELECT  c.id_celi INTO cela_id FROM wiezienie.cela c WHERE c.nr_celi = NEW.nr_celi AND c.id_segmentu = NEW.nr_segmentu;
+        SELECT w.id_wieznia INTO wiezien_id FROM wiezienie.wiezien w WHERE w.imie = NEW.imie AND w.nazwisko = NEW.nazwisko;
 
+        IF(cela_id = NULL) THEN
+            RAISE NOTICE ''cela id nie moze byc null'';
+            RETURN NULL;
+        ELSIF(wiezien_id = NULL) THEN
+            RAISE NOTICE ''wiezien id nie moze byc null'';
+            RETURN NULL;
+        END IF;
+
+        UPDATE wiezienie.wiezien_info SET id_celi = cela_id WHERE id_wieznia = wiezien_id;
+        RETURN NEW;
+
+    END;
 ' LANGUAGE 'plpgsql';
+
+CREATE TRIGGER wiezienPrzeniesienie AFTER UPDATE ON wiezienie.wpis_wieznia
+FOR EACH ROW EXECUTE PROCEDURE wiezienie.przeniesienieWieznia();

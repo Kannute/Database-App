@@ -312,6 +312,7 @@ async function wypiszWieznia(dane){
 
 async function przeniesWieznia(dane){
     try{
+        /*DO POPRAWY, NIE DZIALA */
         const imie = dane.imie;
         const nazwisko = dane.nazwisko;
         const nr_noweCeli = dane.cela;
