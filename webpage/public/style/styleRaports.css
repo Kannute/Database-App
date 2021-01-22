@@ -1,10 +1,16 @@
+html{
+    overflow-y: scroll;
+}
+
 body{
     margin: 0;
     background: rgb(57,58,64);
     background: linear-gradient(90deg, rgba(57,58,64,1) 0%, rgba(132,135,173,1) 46%, rgba(54,54,54,1) 100%)  !important;
 }  
     
-
+button{
+    width:100%;
+}
 #formularzDiv{
     background-color: #CDCDCD;
     width: 300px;

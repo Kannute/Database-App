@@ -61,11 +61,20 @@
     </div>
 </body>
 <script>
+    
     const btnSubmit = document.getElementById("btnSubmit")
     btnSubmit.addEventListener("click", async e=> {
                     const jsonRequest = {}
                     jsonRequest.imie = document.getElementById("imie").value
                     jsonRequest.nazwisko = document.getElementById("nazwisko").value
+                    if(jsonRequest.imie == "Prison" && jsonRequest.nazwisko =="Mike"){
+
+                        var image= document.createElement("img");
+                        image.src = "./images/prisonmike.jpg";
+                        var src = document.getElementById("tableDiv");
+                        src.appendChild(image);
+                        //throw "PRISON MIKE";
+                    }
                     jsonRequest.peseltext = document.getElementById("peseltext").value
                     jsonRequest.cela = document.getElementById("cela").value
                     jsonRequest.segmentno = document.getElementById("segmentno").value
