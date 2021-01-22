@@ -67,14 +67,6 @@
                     const jsonRequest = {}
                     jsonRequest.imie = document.getElementById("imie").value
                     jsonRequest.nazwisko = document.getElementById("nazwisko").value
-                    if(jsonRequest.imie == "Prison" && jsonRequest.nazwisko =="Mike"){
-
-                        var image= document.createElement("img");
-                        image.src = "./images/prisonmike.jpg";
-                        var src = document.getElementById("tableDiv");
-                        src.appendChild(image);
-                        //throw "PRISON MIKE";
-                    }
                     jsonRequest.peseltext = document.getElementById("peseltext").value
                     jsonRequest.cela = document.getElementById("cela").value
                     jsonRequest.segmentno = document.getElementById("segmentno").value
@@ -82,9 +74,18 @@
                     jsonRequest.koniecwyroku = document.getElementById("koniecwyroku").value
                     jsonRequest.depozyttext = document.getElementById("depozyttext").value
                     jsonRequest.depozytilosc = document.getElementById("depozytilosc").value
+                    const jr = JSON.stringify(jsonRequest)
+
                     try{
+                        if(jr.imie == "Prison" && jr.nazwisko =="Mike"){
+                            var image= document.createElement("img");
+                            image.src = "./images/prisonmike.jpg";
+                            var src = document.getElementById("tableDiv");
+                            src.appendChild(image);
+                            throw "PRISON MIKE";
+                        }
                         await fetch("http://localhost:8080/wpis_wieznia", {method: "POST", 
-                        headers: {"content-type": "application/json"}, body: JSON.stringify(jsonRequest) })
+                        headers: {"content-type": "application/json"}, body: jr })
                     }
                     catch(e){
                         console.log("Złapano wyjątek i wpisano więźnia: "+ e)
