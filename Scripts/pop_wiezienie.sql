@@ -184,33 +184,33 @@ INSERT INTO wiezienie.pracownik_info VALUES(DEFAULT, 6, 24, 11);
 
 /** WIEZNIOWIE **/
 INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Tomasz', 'Karolak', '88051032171');
-INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Rozboj', '2021-01-12', '2021-12-31');
+INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Udział w pobiciu, narażenie na utratę życia', '2021-01-12', '2021-12-31');
 INSERT INTO wiezienie.zasoby VALUES(DEFAULT, 'Zegarek', 1);
 INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt wieznia', 2, 11);
 INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, 1, 1, 16,1);
 
 INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Hans', 'Landa', '20050225312');
-INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Morderstwo', '2008-03-22', null);
+INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Spowodowanie rozstroju zdrowia', '2008-03-22', null);
 INSERT INTO wiezienie.zasoby VALUES(DEFAULT, 'Scyzoryk', 1);
 INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt wieznia', 2, 12);
 INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, 2, 2, 17,2);
 
 INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Józef', 'Fritzl', '16211029712');
-INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Uprowadzenie', '2020-09-02', '2030-09-02');
+INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Napaść na tle seksualnym', '2020-09-02', '2030-09-02');
 INSERT INTO wiezienie.zasoby VALUES(DEFAULT, 'Czapka z daszkiem', 1);
 INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt wieznia', 2, 13);
 INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, 3, 3, 18, 3);
 
 INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Andreas', 'Breivik', '98030606879');
-INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Kradziez', '2020-10-02', '2021-04-02');
+INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Fałszerstwo dokumentów', '2020-10-02', '2021-04-02');
 INSERT INTO wiezienie.zasoby VALUES(DEFAULT, 'Bluza z kapturem', 1);
 INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt wieznia', 2, 14);
 INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, 4, 4, 19, 4);
 
 
-INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Wojciech', 'Jaruzelski', '31030115774');
+INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Agnieszka', 'Dygant', '31030115774');
 INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Atak terrorystyczny', '2001-09-11', null);
-INSERT INTO wiezienie.zasoby VALUES(DEFAULT, 'Szal', 1);
+INSERT INTO wiezienie.zasoby VALUES(DEFAULT, 'Klubowy szalik', 1);
 INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt wieznia', 14, 15);
 INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, 5, 26, 20, 5);
 
