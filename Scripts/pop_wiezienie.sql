@@ -182,65 +182,17 @@ INSERT INTO wiezienie.pracownik_info VALUES(DEFAULT, 6, 23, 5);
 INSERT INTO wiezienie.pracownik VALUES(DEFAULT, 'Alutka', 'Lutowicz');
 INSERT INTO wiezienie.pracownik_info VALUES(DEFAULT, 6, 24, 11);
 
-/** WIEZNIOWIE **/
-INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Tomasz', 'Karolak', '88051032171');
-INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Udział w pobiciu, narażenie na utratę życia', '2021-01-12', '2021-12-31');
-INSERT INTO wiezienie.zasoby VALUES(DEFAULT, 'Zegarek', 1);
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt wieznia', 2, 11);
-INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, 1, 1, 16,1);
 
-INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Hans', 'Landa', '20050225312');
-INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Spowodowanie rozstroju zdrowia', '2008-03-22', null);
-INSERT INTO wiezienie.zasoby VALUES(DEFAULT, 'Scyzoryk', 1);
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt wieznia', 2, 12);
-INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, 2, 2, 17,2);
+/* WIEZNIOWIE */
 
-INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Józef', 'Fritzl', '16211029712');
-INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Napaść na tle seksualnym', '2020-09-02', '2030-09-02');
-INSERT INTO wiezienie.zasoby VALUES(DEFAULT, 'Czapka z daszkiem', 1);
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt wieznia', 2, 13);
-INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, 3, 3, 18, 3);
-
-INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Andreas', 'Breivik', '98030606879');
-INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Fałszerstwo dokumentów', '2020-10-02', '2021-04-02');
-INSERT INTO wiezienie.zasoby VALUES(DEFAULT, 'Bluza z kapturem', 1);
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt wieznia', 2, 14);
-INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, 4, 4, 19, 4);
-
-
-INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Agnieszka', 'Dygant', '31030115774');
-INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Atak terrorystyczny', '2001-09-11', null);
-INSERT INTO wiezienie.zasoby VALUES(DEFAULT, 'Klubowy szalik', 1);
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt wieznia', 14, 15);
-INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, 5, 26, 20, 5);
-
-INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Jaroslaw', 'Kaczkowski', '87062616372');
-INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Zamach stanu', '2010-04-10', null);
-INSERT INTO wiezienie.zasoby VALUES(DEFAULT, 'Plecak', 1);
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt wieznia', 15, 16);
-INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, 6, 27, 21, 6);
-
-INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Janusz', 'Pawlacz', '75082525611');
-INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Prowadzenie zorganizowanej grupy przestepczej', '2017-09-29', '2035-01-01');
-INSERT INTO wiezienie.zasoby VALUES(DEFAULT, 'Pluszowa zabawka', 1);
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt wieznia', 15, 17);
-INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, 7, 28, 22, 7);
-
-INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Anna', 'Grodkiewicz', '06100402166');
-INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Uprowadzenie osoby nieletniej', '2015-09-29', '2022-01-01');
-INSERT INTO wiezienie.zasoby VALUES(DEFAULT, 'Fartuch kuchenny', 1);
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt wieznia', 8, 18);
-INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, 8, 22, 23, 8);
-
-INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Kaja', 'Miodek', '57091726041');
-INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Niszczenie mienia publicznego', '2020-12-31', '2021-05-01');
-INSERT INTO wiezienie.zasoby VALUES(DEFAULT, 'Przylbica', 1);
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt wieznia', 8, 19);
-INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, 9, 14, 24, 9);
-
-INSERT INTO wiezienie.wiezien VALUES(DEFAULT, 'Hanna', 'Jantar', '17110842620');
-INSERT INTO wiezienie.wyrok VALUES(DEFAULT, 'Oszustwa podatkowe', '2018-09-14', '2021-10-01');
-INSERT INTO wiezienie.zasoby VALUES(DEFAULT, 'Dokumenty', 1);
-INSERT INTO wiezienie.depozyt VALUES(DEFAULT, 'Depozyt wieznia', 8, 20);
-INSERT INTO wiezienie.wiezien_info VALUES(DEFAULT, 10, 15, 25, 10);
+INSERT INTO wiezienie.wpis_wieznia VALUES ('Tomasz', 'Karolak', 88051032171, 102, 1, 'Udział w pobiciu, narażenia na utratę życia osób trzecich', '2021-12-31', 'Pozłacany zegarek', 1);
+INSERT INTO wiezienie.wpis_wieznia VALUES ('Józef', 'Fritzl', 16211029712, 300, 3, 'Napaść na tle seksualnym', '2045-01-01', 'Czapka z daszkiem', 1);
+INSERT INTO wiezienie.wpis_wieznia VALUES ('Andreas', 'Breivik', 98030606879, 103, 1, 'Fałszerstwo dokumentów', '2025-01-01', 'Płyta CD', 1);
+INSERT INTO wiezienie.wpis_wieznia VALUES ('Agnieszka', 'Dygant', 31030115774, 200, 1, 'Atak terrorystyczny', '2120-01-01', 'Klubowy Szalik', 1);
+INSERT INTO wiezienie.wpis_wieznia VALUES ('Jarosław', 'Kaczkowski', 75082525611, 302, 3, 'Zamach stanu', '2200-01-01', 'Porcelanowy kot', 1);
+INSERT INTO wiezienie.wpis_wieznia VALUES ('Janusz', 'Pawlacz', 8782525241, 104, 1, 'Prowadzenie zorganizowanej grupy przestępczej', '2035-01-01', 'Kalendarz adwentowy', 1);
+INSERT INTO wiezienie.wpis_wieznia VALUES ('Jerzy', 'Turban', 2137555241, 304, 1, 'Fałszerstwa podatkowe', '2024-01-01', 'Marki niemieckie', 300);
+INSERT INTO wiezienie.wpis_wieznia VALUES ('Anna', 'Grodzkiewicz', 06100402166, 201, 2, 'Uprwoadzenie osoby nieletniej' , '2030-01-01', 'Fartuch kuchenny', 1);
+INSERT INTO wiezienie.wpis_wieznia VALUES ('Kaja', 'Miodek', 57091726041, 203, 2, 'Spowodowanie uszczerbku na zdrowiu' , '2022-01-01', 'Tęczowa przypinka', 1);
+INSERT INTO wiezienie.wpis_wieznia VALUES ('Matylda', 'Kononowicz', 17110842620, 204, 2, 'Recydywistyczne zakłócanie ciszy nocnej' , '2021-02-01', 'Megafon', 1);
 

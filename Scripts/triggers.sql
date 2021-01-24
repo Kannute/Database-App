@@ -21,25 +21,18 @@ CREATE OR REPLACE  FUNCTION wiezienie.zmianaIlosciMiejscCeli() RETURNS TRIGGER A
 DECLARE
     cela_record record;
 BEGIN
-    IF(TG_OP = ''INSERT'') THEN
-        SELECT * into cela_record FROM wiezienie.cela WHERE id_celi = new.id_celi;
-        IF(cela_record.ilosc_miejsc = 0) THEN
-            RAISE NOTICE ''CELA PELNA!!!'';
-            RETURN NULL;
-        ELSE
-            UPDATE wiezienie.cela SET ilosc_miejsc = (ilosc_miejsc - 1) WHERE id_celi = cela_record.id_celi;
-            RETURN NEW;
-        END IF;
-
+    SELECT * into cela_record FROM wiezienie.cela WHERE id_celi = new.id_celi;
+    IF(cela_record.ilosc_miejsc = 0) THEN
+        RAISE NOTICE ''CELA PELNA!!!'';
+        RETURN NULL;
     ELSE
-        SELECT * into cela_record FROM wiezienie.cela WHERE id_celi = old.id_celi;
-        UPDATE wiezienie.cela SET ilosc_miejsc = (ilosc_miejsc + 1) WHERE id_celi = cela_record.id_celi;
-        RETURN OLD;
+        UPDATE wiezienie.cela SET ilosc_miejsc = (ilosc_miejsc - 1) WHERE id_celi = cela_record.id_celi;
+        RETURN NEW;
     END IF;
 END;
 ' LANGUAGE 'plpgsql';
 
-CREATE TRIGGER zmianaMiejscCeli AFTER INSERT OR UPDATE OR DELETE on wiezienie.wiezien_info
+CREATE TRIGGER zmianaMiejscCeli AFTER INSERT on wiezienie.wiezien_info
 FOR EACH ROW EXECUTE PROCEDURE wiezienie.zmianaIlosciMiejscCeli();
 
 
@@ -168,9 +161,11 @@ FOR EACH ROW EXECUTE PROCEDURE wiezienie.zatrudnijPracownika();
 CREATE OR REPLACE FUNCTION wiezienie.przeniesienieWieznia() RETURNS TRIGGER AS '
     DECLARE
         cela_id int;
+        cela_id_stara int;
         wiezien_id int;
     BEGIN
         SELECT  c.id_celi INTO cela_id FROM wiezienie.cela c WHERE c.nr_celi = NEW.nr_celi AND c.id_segmentu = NEW.nr_segmentu;
+        SELECT  c.id_celi INTO cela_id_stara FROM wiezienie.cela c WHERE c.nr_celi = OLD.nr_celi AND c.id_segmentu = OLD.nr_segmentu;
         SELECT w.id_wieznia INTO wiezien_id FROM wiezienie.wiezien w WHERE w.imie = NEW.imie AND w.nazwisko = NEW.nazwisko;
 
         IF(cela_id = NULL) THEN
@@ -182,6 +177,8 @@ CREATE OR REPLACE FUNCTION wiezienie.przeniesienieWieznia() RETURNS TRIGGER AS '
         END IF;
 
         UPDATE wiezienie.wiezien_info SET id_celi = cela_id WHERE id_wieznia = wiezien_id;
+        UPDATE wiezienie.cela SET ilosc_miejsc = (ilosc_miejsc+1) WHERE id_celi = cela_id_stara;
+        UPDATE wiezienie.cela SET ilosc_miejsc = (ilosc_miejsc-1) WHERE id_celi = cela_id;
         RETURN NEW;
 
     END;
@@ -189,3 +186,4 @@ CREATE OR REPLACE FUNCTION wiezienie.przeniesienieWieznia() RETURNS TRIGGER AS '
 
 CREATE TRIGGER wiezienPrzeniesienie AFTER UPDATE ON wiezienie.wpis_wieznia
 FOR EACH ROW EXECUTE PROCEDURE wiezienie.przeniesienieWieznia();
+

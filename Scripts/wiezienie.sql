@@ -186,28 +186,24 @@ ALTER TABLE wiezienie.wiezien_info ADD CONSTRAINT wiezien_wiezien_info_fk
 FOREIGN KEY (id_wieznia)
 REFERENCES wiezienie.wiezien (id_wieznia)
 ON DELETE CASCADE
-ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE wiezienie.wiezien_info ADD CONSTRAINT cela_wiezien_info_fk
 FOREIGN KEY (id_celi)
 REFERENCES wiezienie.cela (id_celi)
 ON DELETE  CASCADE
-ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE wiezienie.wiezien_info ADD CONSTRAINT depozyt_wiezien_info_fk
 FOREIGN KEY (id_depozytu)
 REFERENCES wiezienie.depozyt (id_depozytu)
 ON DELETE CASCADE
-ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE wiezienie.wiezien_info ADD CONSTRAINT wyrok_wiezien_info_fk
 FOREIGN KEY (id_wyroku)
 REFERENCES wiezienie.wyrok (id_wyroku)
 ON DELETE CASCADE
-ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 
@@ -231,7 +227,6 @@ ALTER TABLE wiezienie.pracownik_info ADD CONSTRAINT pokoj_pracownik_info_fk
 FOREIGN KEY (id_pokoju)
 REFERENCES wiezienie.pokoj (id_pokoju)
 ON DELETE CASCADE
-ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 

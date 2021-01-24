@@ -7,7 +7,7 @@ w.id_wieznia = wi.id_wieznia and wi.id_wyroku = wy.id_wyroku;
 /*SPIS WIEZNIOW Z DOZYWOTNIM WYROKIEM (imie, nazwisko, wyrok) */
 CREATE VIEW dozywotni_wiezniowie AS SELECT w.imie, w.nazwisko, wy.nazwa_wyroku as wyrok FROM 
 wiezienie.wiezien w, wiezienie.wiezien_info wi, wiezienie.wyrok wy WHERE
-w.id_wieznia = wi.id_wieznia and wi.id_wyroku = wy.id_wyroku and wy.data_zakonczenia IS NULL;
+w.id_wieznia = wi.id_wieznia and wi.id_wyroku = wy.id_wyroku and wy.data_zakonczenia > '2100-01-01';
 
 /*SPIS PRACOWNIKOW (imie, naziwsko, zawod, pokoj, segment) */
 CREATE VIEW wszyscy_pracownicy AS SELECT p.imie, p.nazwisko, z.nazwa as zawod, po.nazwa_pokoju as pokoj, s.nazwa_segmentu as segment FROM
@@ -31,9 +31,9 @@ p.id_segmentu = s.id_segmentu ORDER BY p.nr_pokoju;
 CREATE VIEW wszystkie_pokoje_depozyt AS SELECT p.nr_pokoju, p.nazwa_pokoju, d.nazwa as typ_depozytu , z.nazwa as zasob, z.ilosc FROM wiezienie.pokoj p, wiezienie.depozyt d, wiezienie.zasoby z WHERE
 p.id_pokoju = d.id_pokoju AND d.id_zasobu = z.id_zasobu ORDER BY p.nr_pokoju;
 
-/* SPIS WIEZNIOW Z POZOSTALYM WYROKIEM - nie obejmuje więźniów z dożywotnim wyrokiem (imie, nazwisko, data zakończenia wyroku) */
+/* SPIS WIEZNIOW Z POZOSTALYM WYROKIEM (imie, nazwisko, data zakończenia wyroku) */
 CREATE VIEW wiezniowie_wyrok AS SELECT w.imie, w.nazwisko, wy.data_zakonczenia FROM wiezienie.wiezien w, wiezienie.wiezien_info wi, wiezienie.wyrok wy WHERE
-w.id_wieznia = wi.id_wieznia AND wi.id_wyroku = wy.id_wyroku AND wy.data_zakonczenia IS NOT NULL ORDER BY wy.data_zakonczenia;
+w.id_wieznia = wi.id_wieznia AND wi.id_wyroku = wy.id_wyroku ORDER BY wy.data_zakonczenia;
 
 /*SPIS WIEZNIOW WRAZ Z CELAMI (imie, nazwisko, numer celi, nazwa segmentu)*/
 CREATE VIEW wiezniowie_cele AS SELECT w.imie, w.nazwisko, c.nr_celi, s.nazwa_segmentu FROM wiezienie.wiezien w, wiezienie.wiezien_info wi, wiezienie.cela c , wiezienie.segment s WHERE

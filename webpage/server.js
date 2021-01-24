@@ -141,6 +141,8 @@ app.post("/przenies_wieznia", async (req, res) =>{
 
 
 
+/* Obsługa metody delete */
+
 app.delete("/wypisz_wieznia", async (req, res)=>{
     /* Wypis więźnia z więzienia */
 
@@ -366,14 +368,15 @@ async function przeniesWieznia(dane){
     /* Aktualizowanie danych dotyczących celi, w której przebywa więzień realizowane przy pomocy wyzwalaczy */
 
     try{
-        /*DO POPRAWY, NIE DZIALA */
         const imie = dane.imie;
         const nazwisko = dane.nazwisko;
         const nr_noweCeli = dane.cela;
-        console.log("UPDATE wiezienie.wpis_wieznia ww SET wi.nr_celi = "+ parseInt(nr_noweCeli,10) + " WHERE ww.imie = '"+ imie +"' AND ww.nazwisko= '"+ nazwisko+"';")
+        //console.log("UPDATE wiezienie.wpis_wieznia ww SET ww.nr_celi = "+ parseInt(nr_noweCeli,10) + " WHERE ww.imie = '"+ imie +"' AND ww.nazwisko= '"+ nazwisko+"';")
+        const queryResult = pool.query("UPDATE wiezienie.wpis_wieznia SET nr_celi = "+ parseInt(nr_noweCeli,10) + " WHERE imie = '"+ imie +"' AND nazwisko= '"+ nazwisko+"';");
     }
     catch(e){
         console.log("Złapano wyjątek podczas przenoszenia więźnia: "+ e)
         return false
     }
 }
+
